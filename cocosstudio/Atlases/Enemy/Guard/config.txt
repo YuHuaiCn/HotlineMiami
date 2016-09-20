@@ -1,0 +1,11 @@
+sprGuardDeadBash
+64*32
+888,268
+
+sprGuardIdleStand
+32*32
+755,627
+
+sprGuardHat
+10*6
+0,821

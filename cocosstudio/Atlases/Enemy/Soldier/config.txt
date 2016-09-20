@@ -1,0 +1,11 @@
+sprFatSoldierBurnt1
+60*60
+754,65
+
+sprFatSoldierBurnt
+60*60
+815,65
+
+sprSoldierDodgerDead
+54*32
+512,370

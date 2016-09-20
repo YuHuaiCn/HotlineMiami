@@ -1,0 +1,11 @@
+sprSonDeadExplode
+60*60
+61,792
+
+sprSonWalkSpecial
+12*16
+1227,0
+
+sprSonMask
+9*6
+1240,0

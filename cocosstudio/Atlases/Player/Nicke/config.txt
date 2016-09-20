@@ -1,0 +1,3 @@
+sprNickeWalkSniper
+44*32
+295,644

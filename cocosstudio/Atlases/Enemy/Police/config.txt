@@ -1,0 +1,15 @@
+sprPoliceDeadNeck
+48*23
+191,872
+
+sprPoliceDeadLean
+26*31
+806,812
+
+sprPoliceStand
+32*32
+608,612
+
+sprFatPolicePlate
+32*32
+905,645

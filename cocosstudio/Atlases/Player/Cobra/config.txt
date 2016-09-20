@@ -1,0 +1,11 @@
+sprCobraDeadExplosion
+60*60
+0,487
+
+sprCobraWounded1
+64*40
+261,387
+
+sprCobraWounded2
+64*40
+261,346

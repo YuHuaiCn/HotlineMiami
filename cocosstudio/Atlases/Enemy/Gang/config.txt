@@ -1,0 +1,7 @@
+sprEGangHurtLean
+40*36
+902,1216
+
+sprGangDodgerDead
+56*26
+1343,618

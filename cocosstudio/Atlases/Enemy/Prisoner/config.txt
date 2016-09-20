@@ -1,0 +1,7 @@
+sprPrisonerDeadBash
+64*40
+720,126
+
+sprPrisonerIdleGunsBody
+65*40
+394,126

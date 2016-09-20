@@ -1,0 +1,15 @@
+sprBearBossDead
+52*29
+255,70
+
+sprELisGolfBag
+48*26
+308,70
+
+sprBearWalkAllFour
+38*34
+204,105
+
+sprBearWalkUpright
+34*34
+278,175

@@ -1,0 +1,7 @@
+sprShotgunMonumentPileLSD
+78*73
+112,805
+
+sprShotgunMonumentLSD
+78*73
+112,879

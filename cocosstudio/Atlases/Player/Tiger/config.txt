@@ -1,0 +1,3 @@
+sprTigerLeanTable
+24*17
+65,472

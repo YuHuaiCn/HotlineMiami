@@ -1,0 +1,15 @@
+sprSwatBossHead
+26*6
+0,451
+
+sprSwatBossRollLegs
+17*19
+223,425
+
+sprSwatBossWaypoint
+8*8
+27,451
+
+sprSwatBossHat
+10*6
+36,451

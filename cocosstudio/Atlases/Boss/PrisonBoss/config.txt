@@ -1,0 +1,3 @@
+sprPrisonBossDead
+60*30
+0,0
