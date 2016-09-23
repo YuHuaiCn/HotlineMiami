@@ -1,5 +1,4 @@
-
-
+# split pngs from Atlas using config.txt recursively.
 from PIL import Image
 from os import listdir
 from os.path import isdir
