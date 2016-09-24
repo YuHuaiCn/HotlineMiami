@@ -1,0 +1,7 @@
+redCorner
+8*8
+128,32
+
+writeCorner
+8*8
+352,35

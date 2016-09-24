@@ -1,13 +1,15 @@
-
 cc.FileUtils:getInstance():setPopupNotify(false)
 cc.FileUtils:getInstance():addSearchPath("src/")
 cc.FileUtils:getInstance():addSearchPath("res/")
 
 require "config"
+require "global"
 require "cocos.init"
+require "Levels.init"
 
 local function main()
-    require("app.MyApp"):create():run()
+    local scene = Levels.FirstBloodScene.new()
+    cc.Director:getInstance():replaceScene(scene)
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)

@@ -181,3 +181,15 @@ cocosstudio/Sounds/sndWaterCooler.wav
 cocosstudio/Sounds/sndWeaponHit.wav
 cocosstudio/Sounds/sndZebraScream.wav
 cocosstudio/Sounds/untitled.wav
+simulator/
+res/
+*.tlog
+frameworks/runtime-src/proj.win32/Debug.win32/libcocos2d.exp
+frameworks/runtime-src/proj.win32/Debug.win32/vc120.idb
+frameworks/cocos2d-x/cocos/editor-support/spine/proj.win32/Debug.win32/vc120.idb
+frameworks/cocos2d-x/external/Box2D/proj.win32/Debug.win32/vc120.idb
+frameworks/cocos2d-x/external/bullet/proj.win32/Debug.win32/vc120.idb
+frameworks/runtime-src/proj.win32/Debug.win32/HotlineMiami.exp
+frameworks/runtime-src/proj.win32/Debug.win32/game.res
+frameworks/runtime-src/proj.win32/HotlineMiami.sdf
+frameworks/runtime-src/proj.win32/HotlineMiami.opensdf
