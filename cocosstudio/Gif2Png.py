@@ -77,6 +77,7 @@ def gif2Png(path):
 		createFrames(path, gifName)
 	# deal with sub path of 'path'
 	for floderName in existFloder:
-		gif2Png(path + '\\' + floderName)
+		if floderName != 'tmp':
+			gif2Png(path + '\\' + floderName)
 
 gif2Png('.')

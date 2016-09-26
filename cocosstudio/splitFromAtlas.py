@@ -136,6 +136,7 @@ def splitFromAtlas(path):
 			print(pathList + ' IndexError')
 
 	for floder in allFloder:
-		splitFromAtlas(path + '\\' + floder)
+		if floder != 'tmp':
+			splitFromAtlas(path + '\\' + floder)
 
 splitFromAtlas('.')

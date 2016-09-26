@@ -1,3 +1,4 @@
+
 from os import listdir, mkdir
 from os.path import isdir
 import shutil, os
@@ -20,7 +21,7 @@ def getAllFloderNames(path):
 			existFloders.append(floderName)
 	return existFloders
 
-def cutTmpFileToTmp(path):
+def moveTmpFileToTmp(path):
 	existGifs = getAllGifNames(path)
 	existFloder = getAllFloderNames(path)
 	allItem = listdir(path)
@@ -69,6 +70,6 @@ def cutTmpFileToTmp(path):
 	# move files in sub path
 	for floder in existFloder:
 		if floder != 'tmp':
-			cutTmpFileToTmp(path + '\\' + floder)
+			moveTmpFileToTmp(path + '\\' + floder)
 
-cutTmpFileToTmp('.')
+moveTmpFileToTmp('.')
