@@ -104,14 +104,12 @@ def getAllFloderNames(path):
 	return existFloders
 
 def splitFromAtlas(path):
-	needSplit = False
 	allItem = listdir(path)
 	allFloder = getAllFloderNames(path)
 	pathList = path.split('\\')
 	pathLength = len(pathList)
 
 	if 'config.txt' in allItem:
-		needSplit = True
 		try:
 			curPath = pathList[pathLength - 1]
 			fatherPath = pathList[pathLength - 2]
