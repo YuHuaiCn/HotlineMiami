@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="120" height="80" tilewidth="8" tileheight="8" nextobjectid="17">
+ <tileset firstgid="1" name="Common" tilewidth="8" tileheight="8" tilecount="4096" columns="64">
+  <image source="Common.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="4097" name="Furniture" tilewidth="8" tileheight="8" tilecount="1024" columns="32">
+  <image source="Furniture-test.png" width="256" height="256"/>
+ </tileset>
+ <layer name="ground" width="120" height="80">
+  <data encoding="base64" compression="zlib">
+   eJzt0UERgDAAA8HCYKKqsYyHPpoO2ccauJv3GBMAAAAAAAAAAPiV53DvtSbd9RTpf/7666+//vrbKP3PX3/99ddffxul//nrr7/++utvo/Q/f7v/rkp3PUX6g7/++uuvv/42Sn/w119//fXX30bpD/7666+//vrbKP3BX3/99ddffxulP/jrr7/++utvo/QHf/31119/AQAAAAAAAAAAAGCfD+i1tgI=
+  </data>
+ </layer>
+ <layer name="wall" width="120" height="80">
+  <data encoding="base64" compression="zlib">
+   eJzt211Kw1AUReFbaDSCHVTBKoKTCjb+gJPyofPy+lCiUOz1Jtk53awPDoqknOqiYpKaEgAAAOb0vk5p3zCXNF2ej3VZ367wOMSybcqOWxUeh1jo642+3ujrjb7e6OuNvt7o642+3ujrjb7e6OstWt9z96maTUpXea7ztJvz91Du2pR27fDxPs/DH187fj7lfZzSezhziNY38u+JvrLTkt8Tfcsd6Dta5L5N5XOjr35PjR19R4vcd9vWPY6++j01OvqOFrnvJ31Hi9x3dVP5OPrK99Tg/He8yH2dz39Lr8X99/rhqYmq9vy39rrmFD9LXr/lOP8dL3rfPs9Lntc8bydeY/2JY+ir36NEX/0eJfrq9yjRV79Hib76PUr01e9Roq9+jxJ99XuU6Kvfo0Tf33tq3/M61zXdMfv2XL9aZI8SffV7lOg7aG41e5ToO9jRd1LR+vb0nVS0vgf6TipaX/6+mhZ950df/R4l+ur3KNFXv0eJvvo9SvTV71Gi7+Ax73kuvC9zKfNEX8yEvt7o642+3ujrjb7e6OuNvt7o642+3ujrjb7e6OuNvt7o642+3kr7ft937y54fv5f6PF/Q5d+TopZ8r0FAAAAgIsv3wn71g==
+  </data>
+ </layer>
+ <layer name="furniture" width="120" height="80">
+  <data encoding="base64" compression="zlib">
+   eJzt2btOVFEARuHNHQrNMDZYcodCCm2wFG8YTDDaYMldAokGGihVkAoKbKQUECp9BwE16lPgBYK+BCuEltDMnpOzs75kdSeZk/yT7MnsECRJkiRJkiRJKo9iIYQrhazfIn3DjSGM0CiN0ThN0GRj3M+9zrY33De6l+z4il7TIi3RG1qOvO9jtn3ivtG9Z8cN2qQt+kDbtBN531m2nXPf6D6z4y7t0T59oa/0LfK+a2z71n2jO2DHX/Sb/tBfOqSjyPuqPCqKIVRSFVVTDdVSXTHrN1MpNLNjC7VSG7VTB3W6r1RSG/we2fQ3SbJ22XbPfSVJOnWJM/Gy52KyrrFtT4b7fuezf9BPv2NJOmbXf/TffUsmq3tTlUdW96Yqj6zuTRXPAOfbw7Mz7qJ700Gee+R5mCvT7DVzttlF96bPee6F++aW96Zp895USsMK5+yqZ22yPrLtJ/eVJEmSJEmSztVUCOGq/6Elq5dtb7pvsobY9qn7JmuebRfcN1nv2HbdfSVJkiRJkiRJklRCFYUQKqmKqqmGaqmO6qnB+6lca2a/FmqlNmqnDuqkLup231y7xX59dJvu0F26R/epnx64b64Ns98IjdIYjdMETdIzmnJfSZIkSZIkSTlzAseWVqc=
+  </data>
+ </layer>
+ <objectgroup name="objects">
+  <object id="1" name="chair1" x="336.667" y="247.667" width="15.3333" height="15.6667"/>
+  <object id="2" name="chair2" x="384.667" y="288" width="15.3333" height="15.3333"/>
+  <object id="3" name="chair3" x="424.333" y="248.667" width="15.3333" height="15"/>
+  <object id="7" name="chair4" x="384" y="200.333" width="15.67" height="15.3333"/>
+  <object id="9" name="table1" x="360.667" y="224.667" width="55" height="54.6667">
+   <ellipse/>
+  </object>
+  <object id="16" name="table2" x="760.5" y="96.3333" width="55" height="54.6667">
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>
