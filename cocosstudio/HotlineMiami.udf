@@ -19,7 +19,7 @@
         <LuaEncryptSign Value="" />
         <Android_PackageName Value="org.cocos.HotlineMiami" />
         <AndroidkeyStore Value="" />
-        <AndroidVersion Value="" />
+        <AndroidVersion Value="android-20" />
         <iOS_Target Value="HotlineMiami-mobile" />
         <iOS_BundleID Value="" />
         <Platform Value="None" />
