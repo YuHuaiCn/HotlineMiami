@@ -57,6 +57,7 @@
               <Image Name="sprBearWalkAllFour.png" />
               <Image Name="sprBearWalkUpright.png" />
               <Image Name="sprELisGolfBag.png" />
+              <PlistInfo Name="atlBossBearEat.csi" Type="Plist" />
             </Folder>
             <Folder Name="GangLeader">
               <Folder Name="sprGangLeaderBang">

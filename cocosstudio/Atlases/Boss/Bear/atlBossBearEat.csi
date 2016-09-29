@@ -1,0 +1,29 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="atlBossBearEat" Type="Plist" ID="9545d362-060a-41ad-a467-c9e6260ef322" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="False" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat000.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat001.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat002.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat003.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat004.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat005.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat006.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat007.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat008.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat009.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat010.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat011.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat012.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat013.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat014.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat015.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat016.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat017.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat018.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat019.png" />
+      <FilePathData Path="Atlases/Boss/Bear/sprBearBossEat/sprBearBossEat020.png" />
+    </ImageFiles>
+    <MaxSize Width="256" Height="256" />
+  </Content>
+</PlistInfoProjectFile>
