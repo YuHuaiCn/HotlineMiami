@@ -10,12 +10,14 @@ function FirstBloodScene:ctor( )
 	layer:addChild(map)
 	self:addChild(layer)
 	-- run anim
-	local nodeBossBear = cc.CSLoader:createNode('Atlases/Boss/Bear/aniBossBear.csb')
-	local aniBossBear  = cc.CSLoader:createTimeline('Atlases/Boss/Bear/aniBossBear.csb')
-	aniBossBear:play("eat", true)
-	nodeBossBear:runAction(aniBossBear)
-	layer:addChild(nodeBossBear)
-	nodeBossBear:setPosition(400, 200)
+	local nickeLeg = cc.Sprite:create()
+	AM:runAnimation(nickeLeg, 'PlayerNickeLeg', true)
+	layer:addChild(nickeLeg)
+	nickeLeg:setPosition(300, 250)
+	local nicke = cc.Sprite:create()
+	AM:runAnimation(nicke, 'PlayerNickeAttackKnifeFlameThrower', true)
+	layer:addChild(nicke)
+	nicke:setPosition(300, 250)
 end
 
 Levels.FirstBloodScene = FirstBloodScene

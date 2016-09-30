@@ -9699,7 +9699,7 @@
                   <Image Name="007.png" />
                 </Folder>
               </Folder>
-              <Folder Name="Legs">
+              <Folder Name="Leg">
                 <Image Name="000.png" />
                 <Image Name="001.png" />
                 <Image Name="002.png" />
@@ -9994,6 +9994,7 @@
                 </Folder>
                 <Image Name="Sniper000.png" />
               </Folder>
+              <PlistInfo Name="PlayerNicke.csi" Type="Plist" />
             </Folder>
             <Folder Name="PigButcher">
               <Folder Name="Attack">
@@ -13625,7 +13626,7 @@
                   <Image Name="010.png" />
                 </Folder>
               </Folder>
-              <Folder Name="Legs">
+              <Folder Name="Leg">
                 <Image Name="000.png" />
                 <Image Name="001.png" />
                 <Image Name="002.png" />
@@ -13922,7 +13923,7 @@
                 <Image Name="008.png" />
                 <Image Name="009.png" />
               </Folder>
-              <PlistInfo Name="PlayerWriter1.csi" Type="Plist" />
+              <PlistInfo Name="PlayerWriter.csi" Type="Plist" />
             </Folder>
             <Folder Name="Writer2">
               <Folder Name="Attack">

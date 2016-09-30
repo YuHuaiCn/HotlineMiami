@@ -1,3 +1,3 @@
 Levels = {}
 AnimationManager = {}
-AM = AnimationManager
+AM = {}

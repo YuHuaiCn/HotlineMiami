@@ -2,7 +2,7 @@ from os import listdir, mkdir
 from os.path import isdir
 import shutil, os
 
-simPath = '.\\simulator\\win32\\'
+simPath = '.\\simulator\\native\\'
 
 def getAllFloderNames(path):
 	existFloders = []
@@ -36,4 +36,4 @@ def moveToSimulator(path):
 
 moveToSimulator('.\\res')
 moveToSimulator('.\\src')
-os.system('simulator\win32\HotlineMiami.exe')
+os.system('simulator\\native\HotlineMiami.exe')

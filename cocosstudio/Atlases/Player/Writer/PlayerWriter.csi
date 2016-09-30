@@ -1,5 +1,5 @@
 <PlistInfoProjectFile>
-  <PropertyGroup Name="PlayerWriter1" Type="Plist" ID="57685b1c-9092-4e34-8efb-53ce5fd6d66d" Version="3.10.0.0" />
+  <PropertyGroup Name="PlayerWriter" Type="Plist" ID="57685b1c-9092-4e34-8efb-53ce5fd6d66d" Version="3.10.0.0" />
   <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="False" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
       <FilePathData Path="Atlases/Player/Writer/Attack/9mm/000.png" />
@@ -463,22 +463,22 @@
       <FilePathData Path="Atlases/Player/Writer/Kill/Stomp/008.png" />
       <FilePathData Path="Atlases/Player/Writer/Kill/Stomp/009.png" />
       <FilePathData Path="Atlases/Player/Writer/Kill/Stomp/010.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/000.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/001.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/002.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/003.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/004.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/005.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/006.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/007.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/008.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/009.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/010.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/011.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/012.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/013.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/014.png" />
-      <FilePathData Path="Atlases/Player/Writer/Legs/015.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/000.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/001.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/002.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/003.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/004.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/005.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/006.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/007.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/008.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/009.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/010.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/011.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/012.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/013.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/014.png" />
+      <FilePathData Path="Atlases/Player/Writer/Leg/015.png" />
       <FilePathData Path="Atlases/Player/Writer/Pickup/000.png" />
       <FilePathData Path="Atlases/Player/Writer/Pickup/001.png" />
       <FilePathData Path="Atlases/Player/Writer/Pickup/002.png" />
