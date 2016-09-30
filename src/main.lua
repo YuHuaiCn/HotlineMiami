@@ -6,6 +6,7 @@ require "config"
 require "global"
 require "cocos.init"
 require "Levels.init"
+require "Manager.init"
 
 local function main()
     local scene = Levels.FirstBloodScene.new()

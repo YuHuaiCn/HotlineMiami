@@ -53,11 +53,13 @@
                 <Image Name="sprBearBossWalk006.png" />
                 <Image Name="sprBearBossWalk007.png" />
               </Folder>
+              <PlistInfo Name="atlBossBearEat.csi" Type="Plist" />
               <Image Name="sprBearBossDead.png" />
               <Image Name="sprBearWalkAllFour.png" />
               <Image Name="sprBearWalkUpright.png" />
               <Image Name="sprELisGolfBag.png" />
-              <PlistInfo Name="atlBossBearEat.csi" Type="Plist" />
+              <Project Name="aniBossBear.csd" Type="Node" />
+              <PlistInfo Name="atlBossBearRun.csi" Type="Plist" />
             </Folder>
             <Folder Name="GangLeader">
               <Folder Name="sprGangLeaderBang">
