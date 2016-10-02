@@ -1,40 +1,45 @@
 
 AnimationManager = class("AnimationManager")
 
-AnimationManager.animConfig = require "Manager.AnimationConfig"
+AnimationManager._animConfig = require "Manager.AnimationConfig"
 
-local function getAnimConfig(animName)
-
+local function getAnimConfigByPath(self, path)
+    local config = self._animConfig
+    -- get config  path is start with 'Atlases/' so remove it
+    for subPath in path:sub(9, -1):gmatch("%a+") do
+        config = config[subPath]
+    end
+    return config
 end
 
-local function getPath(animName)
+local function getPathListFromString(animName)
     local upIndex = {}  -- capital letters' index in animName
     local path = {}     -- sub pathes split from animName
     local pngPath = ''
     local index = 0
-    for _, nChar in ipairs({string.byte(animName, 1, -1)}) do
+    for _, nChar in ipairs({animName:byte(1, -1)}) do
         index = index + 1
         -- if this Char is upper save it
         if nChar >= 65 and nChar <= 90 then
-            table.insert(upIndex, index)
+            upIndex[#upIndex + 1] = index
         end
     end
     local lastIndex = 1
     for i = 2, #upIndex do
-        table.insert(path, string.sub(animName, lastIndex, upIndex[i] - 1))
+        path[#path + 1] = animName:sub(lastIndex, upIndex[i] - 1)
         lastIndex = upIndex[i]
     end
     -- push last sub path
-    table.insert(path, string.sub(animName, lastIndex, -1))
+    path[#path + 1] = animName:sub(lastIndex, -1)
 
     return path
 end
 
-local function createAnimationFromPath(path)
+local function getFramesFromPath(path)
     -- create animation
     local animation = nil
     local frameList = {}
-    local animPathHome = string.format("Atlases/%s/%s", path[1], path[2])  -- path of anim eg: Atlases/Player/Write
+    local animPathHome = "Atlases/" .. table.concat(path, '/', 1, 2)  -- path of anim eg: Atlases/Player/Write
     local plistName = string.format("%s/%s.plist", animPathHome, path[1] .. path[2])
     local frameCache = cc.SpriteFrameCache:getInstance()
     frameCache:addSpriteFrames(plistName)
@@ -45,11 +50,10 @@ local function createAnimationFromPath(path)
     local function createInPath(path)
         for i = 0, 999 do
             local pngName = string.format("%s/%03d.png", path, i)
-            print(pngName)
-            local spriteFrame = frameCache:getSpriteFrameByName(pngName)
+            local spriteFrame = frameCache:getSpriteFrame(pngName)
             if spriteFrame then
                 --animation:addSpriteFrame(spriteFrame)
-                table.insert(frameList, spriteFrame)
+                frameList[#frameList + 1] = spriteFrame
                 frames = frames + 1
             else
                 return frames
@@ -59,33 +63,25 @@ local function createAnimationFromPath(path)
 
     -- get target path
     local function getAnimPath(pathName)
-        local animPath = animPathHome
+        local animPath
         if pathName == 'normal' then
             if #path < 3 then
-                print("Can't find anim: " .. animName)
+                printError("Can't find anim: " .. animName)
                 return
             end
-            for i = 3, #path do
-                animPath = animPath .. '/' .. path[i]
-            end
+            animPath = animPathHome .. '/' .. table.concat(path, '/', 3)
         elseif pathName == 'father' then
             if #path < 4 then
-                print("Can't find anim: " .. animName)
+                printError("Can't find anim: " .. animName)
                 return
             end
-            for i = 3, #path - 1 do
-                animPath = animPath .. '/' .. path[i]
-            end
-            animPath = animPath .. path[#path]
+            animPath = animPathHome .. '/' .. table.concat(path, '/', 3, #path - 1) .. path[#path]
         elseif pathName == "grand" then
             if #path < 5 then
-                print("Can't find anim: " .. animName)
+                printError("Can't find anim: " .. animName)
                 return
             end
-            for i = 3, #path - 2 do
-                animPath = animPath .. '/' .. path[i]
-            end
-            animPath = animPath .. path[#path - 1] .. path[#path]
+            animPath = animPathHome .. '/' .. table.concat(path, '/', 3, #path - 2) .. path[#path - 1] .. path[#path]
         end
         return animPath
     end
@@ -108,29 +104,45 @@ local function createAnimationFromPath(path)
             end
         end
     end
-    -- create animation
-    if frames ~= 0 then  -- finded
-        animation = cc.Animation:createWithSpriteFrames(frameList, 5/40)
-        animation:setRestoreOriginalFrame(true)
-    end
-    return animation, frameList[1]
+    return frameList, tarPath
 end
 
-function AnimationManager:runAnimation(node, animName, loop)
+
+-------------------------------------------class function-------------------------------------------
+
+function AnimationManager:runAnimation(node, animName, loop, speed)
     loop = loop or false
-    local path = getPath(animName)
-    local animation, firstFrame = createAnimationFromPath(path)
-    if animation then
-        node:setSpriteFrame(firstFrame)
+    speed = speed or 1
+    local path = getPathListFromString(animName)
+    local frameList, tarPath = getFramesFromPath(path)
+    if frameList then
+        node:setSpriteFrame(frameList[1])
+        local config = getAnimConfigByPath(self, tarPath)
+        -- set offset
+        local offset = config.offset
+        node:setPosition(offset[1], offset[2])
+        -- create animation
+        local animation = cc.Animation:createWithSpriteFrames(frameList, config.gap / 60)
+        animation:setRestoreOriginalFrame(true)
+        -- crate action
         local action = cc.Animate:create(animation)
         if loop then
-            node:runAction(cc.RepeatForever:create(action))
-        else
-            node:runAction(action)
+            action = cc.RepeatForever:create(action)
         end
+        local actSpeed = cc.Speed:create(action, speed)
+        node:runAction(actSpeed)
+        node._animation = actSpeed
     else
-        print("Can't find anim: " .. animName)
+        printError("Can't find anim: " .. animName)
     end       
+end
+
+function AnimationManager:setSpeed(node, speed)
+    speed = speed or 1
+    local action = node._animation
+    if action then
+        action:setSpeed(speed)
+    end
 end
 
 AM = AnimationManager

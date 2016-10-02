@@ -2,11 +2,17 @@
 local animConfig = {}
 
 
--- animConfig format: frame, gap = 5, offset = (0, 0)
+-- animConfig format: gap = 5, offset = (0, 0)
 animConfig.Player = {}
-	animConfig.Player.Writer = {}
+	animConfig.Player.Writer = {}	
 		animConfig.Player.Writer.Walk = {}
-			animConfig.Player.Writer.Walk.Unarmed = {8, 5, {0, 0}}
+			animConfig.Player.Writer.Walk.Unarmed = {gap = 5, offset = {0, 0}}
+
+animConfig.Player = {}
+	animConfig.Player.Nicke = {}
+		animConfig.Player.Nicke.Leg = {gap = 5, offset = {-5, 0}}
+		animConfig.Player.Nicke.Attack = {}
+			animConfig.Player.Nicke.Attack.KnifeFlameThrower = {gap = 5, offset = {0, 0}}
 
 
 

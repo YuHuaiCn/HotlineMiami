@@ -12,10 +12,11 @@ function FirstBloodScene:ctor( )
 	-- run anim
 	local nickeLeg = cc.Sprite:create()
 	AM:runAnimation(nickeLeg, 'PlayerNickeLeg', true)
-	layer:addChild(nickeLeg)
-	nickeLeg:setPosition(300, 250)
+	nickeLeg:setAnchorPoint(0, 0)
 	local nicke = cc.Sprite:create()
 	AM:runAnimation(nicke, 'PlayerNickeAttackKnifeFlameThrower', true)
+	AM:setSpeed(nicke, 10)
+	nicke:addChild(nickeLeg, -1)
 	layer:addChild(nicke)
 	nicke:setPosition(300, 250)
 end

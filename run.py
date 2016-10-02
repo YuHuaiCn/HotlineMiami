@@ -1,5 +1,5 @@
-from os import listdir, mkdir
-from os.path import isdir
+from   os import listdir, mkdir
+from   os.path import isdir
 import shutil, os
 
 simPath = '.\\simulator\\native\\'

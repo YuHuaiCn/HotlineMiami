@@ -2,11 +2,9 @@ cc.FileUtils:getInstance():setPopupNotify(false)
 cc.FileUtils:getInstance():addSearchPath("src/")
 cc.FileUtils:getInstance():addSearchPath("res/")
 
-require "global"
 require "config"
 require "cocos.init"
-require "Levels.init"
-require "Manager.init"
+require "init"
 
 local function main()
     local scene = Levels.FirstBloodScene.new()
