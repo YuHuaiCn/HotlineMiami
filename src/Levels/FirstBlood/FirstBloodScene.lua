@@ -19,6 +19,11 @@ function FirstBloodScene:ctor( )
 	nicke:addChild(nickeLeg, -1)
 	layer:addChild(nicke)
 	nicke:setPosition(300, 250)
+	local followController = FollowController.new()
+	self:addChild(followController._touchPanel, 100)
+	local sprWriter = Writer.new()
+	layer:addChild(sprWriter)
+	sprWriter:setPosition(300, 100)
 end
 
 Levels.FirstBloodScene = FirstBloodScene

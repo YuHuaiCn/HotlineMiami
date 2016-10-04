@@ -66,19 +66,19 @@ local function getFramesFromPath(path)
         local animPath
         if pathName == 'normal' then
             if #path < 3 then
-                printError("Can't find anim: " .. animName)
+                printError("Can't find anim: " .. table.concat(path, '/'))
                 return
             end
             animPath = animPathHome .. '/' .. table.concat(path, '/', 3)
         elseif pathName == 'father' then
             if #path < 4 then
-                printError("Can't find anim: " .. animName)
+                printError("Can't find anim: " .. table.concat(path, '/'))
                 return
             end
             animPath = animPathHome .. '/' .. table.concat(path, '/', 3, #path - 1) .. path[#path]
         elseif pathName == "grand" then
             if #path < 5 then
-                printError("Can't find anim: " .. animName)
+                printError("Can't find anim: " .. table.concat(path, '/'))
                 return
             end
             animPath = animPathHome .. '/' .. table.concat(path, '/', 3, #path - 2) .. path[#path - 1] .. path[#path]

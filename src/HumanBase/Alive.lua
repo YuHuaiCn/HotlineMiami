@@ -7,8 +7,8 @@ local PI = 3.1415
 
 Alive = {
 	_health            = 100,   -- point
-	_walkSpeed         = 4,     -- m/s
-	_runSpeed          = 10,    -- m/s
+	_walkSpeed         = 2,     -- m/s
+	_runSpeed          = 6,     -- m/s
 	_turnSpeed         = PI,    -- r/s
 	_reactionTime      = 5,     -- 0.1s
 	_alertReactionTime = 3,     -- 0.1s
@@ -22,6 +22,9 @@ Alive.MoveType = {
 }
 
 function Alive:ctor(args)
+	if type(args) ~= 'table' then
+		return
+	end
 	for k, v in pairs(args) do
 		self[k] = v
 	end
