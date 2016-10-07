@@ -8,6 +8,9 @@ local function getAnimConfigByPath(self, path)
     -- get config  path is start with 'Atlases/' so remove it
     for subPath in path:sub(9, -1):gmatch("%a+") do
         config = config[subPath]
+        if not config then
+            break
+        end
     end
     return config
 end
@@ -118,6 +121,9 @@ function AnimationManager:runAnimation(node, animName, loop, speed)
     if frameList then
         node:setSpriteFrame(frameList[1])
         local config = getAnimConfigByPath(self, tarPath)
+        if not config then
+            config = {gap = 5, offset = {0, 0}}
+        end
         -- set offset
         local offset = config.offset
         node:setPosition(offset[1], offset[2])

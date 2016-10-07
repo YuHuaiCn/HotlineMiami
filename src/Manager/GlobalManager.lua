@@ -15,8 +15,9 @@ cc.exports.Director  = cc.Director:getInstance()
 cc.exports.Scheduler = Director:getScheduler()
 cc.exports.EventDispatcher = Director:getEventDispatcher()
 
-cc.exports.PixcelPerMeter = 50
-cc.exports.CurrentHero = nil
+cc.exports.PIXCEL_PER_METER = 35
+cc.exports.CurrentHero = {}
+cc.exports.ANIMATION_INTERVAL = Director:getAnimationInterval()
 
 
 ----------------- Enum -----------------

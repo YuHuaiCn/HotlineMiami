@@ -32,6 +32,7 @@ end
 function FollowController.touchMoved(touch, event)
 	local touchPanel = event:getCurrentTarget()
 	local woldLocation = touch:getLocation()
+	-- print('(' .. woldLocation.x .. ', ' .. woldLocation.y .. ')')
 	CurrentHero:updateFollow(woldLocation)
 end
 

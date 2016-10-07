@@ -214,3 +214,4 @@ frameworks/cocos2d-x/plugin/tools/toolsForPublish/environment.sh
 frameworks/runtime-src/proj.android/gen/org/cocos2dx/HotlineMiami/BuildConfig.java
 frameworks/runtime-src/proj.android/gen/org/cocos2dx/HotlineMiami/R.java
 frameworks/runtime-src/proj.android/protocols/android/libPluginProtocol.jar.bac
+runtime/android/

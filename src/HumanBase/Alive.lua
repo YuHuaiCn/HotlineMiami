@@ -1,20 +1,18 @@
 
 Alive = class("Alive", function (...)
-	cc.Sprite:create(...)
+	return cc.Sprite:create(...)
 end)
 
 local PI = 3.1415
 
-Alive = {
-	_health            = 100,   -- point
-	_walkSpeed         = 2,     -- m/s
-	_runSpeed          = 6,     -- m/s
-	_turnSpeed         = PI,    -- r/s
-	_reactionTime      = 5,     -- 0.1s
-	_alertReactionTime = 3,     -- 0.1s
-	_viewDist          = 20,    -- m
-	_viewAngle         = PI/2,  -- radian
-}
+Alive._health            = 100   -- point
+Alive._walkSpeed         = 2     -- m/s
+Alive._runSpeed          = 6     -- m/s
+Alive._turnSpeed         = PI    -- r/s
+Alive._reactionTime      = 5     -- 0.1s
+Alive._alertReactionTime = 3     -- 0.1s
+Alive._viewDist          = 20    -- m
+Alive._viewAngle         = PI/2  -- radian
 
 Alive.MoveType = {
 	WALK = 1,
@@ -28,6 +26,10 @@ function Alive:ctor(args)
 	for k, v in pairs(args) do
 		self[k] = v
 	end
+end
+
+function Alive:create()
+	return Alive.new()
 end
 
 function Alive:hurt(nDamage)
@@ -105,5 +107,3 @@ end
 function Alive:getViewAngle()
 	return self._viewAngle
 end
-
-return Alive
