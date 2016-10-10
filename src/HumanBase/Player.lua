@@ -25,7 +25,7 @@ function Player:updateFollow(point)
 		math.abs(self._preFollowedPoint.y - point.y) <= 10 then
 		return
 	end
-	-- print('updateFollow new')
+	
 	self._preFollowedPoint = point
 	local curPos = cc.p(self:getPosition())
 	local speed  = self:getRunSpeed()
@@ -33,7 +33,7 @@ function Player:updateFollow(point)
 	local l = cc.pGetDistance(curPos, point)
 	local ratioX = (point.x - curPos.x) / l
 	local ratioY = (point.y - curPos.y) / l
-	local dPixcel = pixcelSpeed * ANIMATION_INTERVAL
+	local dPixcel = pixcelSpeed * Director:getAnimationInterval()
 	-- dX and dY should not collected by GC when updateFollow is ended
 	-- so moveToNext can get changed dX and dY
 	self.dX = dPixcel * ratioX
@@ -46,6 +46,7 @@ function Player:updateFollow(point)
 				Scheduler:unscheduleScriptEntry(self._followEntry)
 			end
 			self._followEntry = nil
+			return
 		end
 		-- if not reach tarPoint then move
 		if self.remainMoveTimes > 0 then

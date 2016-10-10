@@ -14,11 +14,10 @@ cc.exports.FollowController = {}
 cc.exports.Director  = cc.Director:getInstance()
 cc.exports.Scheduler = Director:getScheduler()
 cc.exports.EventDispatcher = Director:getEventDispatcher()
+cc.exports.CurrentHero = {}
 
 cc.exports.PIXCEL_PER_METER = 35
-cc.exports.CurrentHero = {}
-cc.exports.ANIMATION_INTERVAL = Director:getAnimationInterval()
-
+cc.exports.POINT_TYPE_JUDGE_TIME = 0.08
 
 ----------------- Enum -----------------
 -- cc.exports
