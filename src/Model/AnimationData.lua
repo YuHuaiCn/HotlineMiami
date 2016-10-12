@@ -14,6 +14,4 @@ animConfig.Player = {}
 		animConfig.Player.Nicke.Attack = {}
 			animConfig.Player.Nicke.Attack.KnifeFlameThrower = {gap = 5, offset = {0, 0}}
 
-
-
 return animConfig

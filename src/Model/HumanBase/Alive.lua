@@ -1,6 +1,6 @@
 
 Alive = class("Alive", function (...)
-	return cc.Sprite:create(...)
+    return cc.Node:create(...)
 end)
 
 local PI = 3.1415

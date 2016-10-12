@@ -1,7 +1,19 @@
 
 AnimationManager = class("AnimationManager")
 
-AnimationManager._animConfig = require "Manager.AnimationConfig"
+AnimationManager._instance = nil
+AnimationManager._animConfig = require "Model.AnimationData"
+
+function AnimationManager.new(...)
+    if AnimationManager._instance == nil then
+        AnimationManager._instance = AnimationManager:ctor(...)
+    end
+    return AnimationManager._instance
+end
+
+function AnimationManager:ctor(...)
+    return self
+end
 
 local function getAnimConfigByPath(self, path)
     local config = self._animConfig

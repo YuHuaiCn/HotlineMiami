@@ -7,18 +7,18 @@ FollowController._oneByOnePoints = {}   -- struct: type: point type
 										--         entryPos:  the position of entry point
 										--         curPos:    the position of current point
 										-- hasFollowPoint 
+FollowController._touchPanel = nil
+
 local POINT_TYPE_NULL   = 0
 local POINT_TYPE_ATTACK = 1
 local POINT_TYPE_FOLLOW = 2
 
 function FollowController.new(...)
-	if FollowController._instance == nil then
-		FollowController._instance = FollowController:ctor(...)
-	end
-	return FollowController._instance
+    if FollowController._instance == nil then
+        FollowController._instance = FollowController:ctor(...)
+    end
+    return FollowController._instance
 end
-
-FollowController._touchPanel = nil
 
 function FollowController:ctor()
 	local touchLayer = cc.Layer:create()
