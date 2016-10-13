@@ -56,6 +56,7 @@ end
 
 local function main()
     local scene = Levels.FirstBloodScene.new()
+    DM:storeValue("CurrentScene", scene)
     cc.Director:getInstance():replaceScene(scene)
     -- test()
 end

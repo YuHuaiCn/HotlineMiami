@@ -1,10 +1,9 @@
 
-cc.exports.CollisionManager = class("CollisionManager")
+CollisionManager = class("CollisionManager")
 
-CollisionManager._instance = nil
-CollisionManager._collisionPanel = nil
+CollisionManager._collisionLayer = nil
 
-function CollisionManager.new(...)
+function CollisionManager:getInstance(...)
     if CollisionManager._instance == nil then
         CollisionManager._instance = CollisionManager:ctor(...)
     end
@@ -12,7 +11,7 @@ function CollisionManager.new(...)
 end
 
 function CollisionManager:ctor(...)
-    self._collisionPanel = cc.Layer:create()
+    local collisionLayer = cc.Layer:create()
 	local contactListener = cc.EventListenerPhysicsContact:create()
 	contactListener:registerScriptHandler(function (...) return self:onContactBegin(...) end,
                                             cc.Handler.EVENT_PHYSICS_CONTACT_BEGIN)
@@ -22,9 +21,14 @@ function CollisionManager:ctor(...)
                                             cc.Handler.EVENT_PHYSICS_CONTACT_POSTSOLVE)
     contactListener:registerScriptHandler(function (...) self:onContactSeperate(...) end,
                                             cc.Handler.EVENT_PHYSICS_CONTACT_SEPARATE)
-	EventDispatcher:addEventListenerWithSceneGraphPriority(contactListener, self._collisionPanel)
---	self._collisionPanel = Manager._collisionPanel
+	EventDispatcher:addEventListenerWithSceneGraphPriority(contactListener, collisionLayer)
+    DM:storeValue("CollisionLayer", collisionLayer)
+    self._collisionLayer = collisionLayer
 	return self
+end
+
+function CollisionManager:dtor(...)
+    DM:removeValue("CollisionLayer")
 end
 
 function CollisionManager:onContactBegin(contact)

@@ -12,6 +12,8 @@ cc.exports.AM = {}
 cc.exports.CollisionManager = {}
 cc.exports.CM = {}
 cc.exports.FollowController = {}
+cc.exports.DataManager = {}
+cc.exports.DM = {}
 
 
 --------------- Variate ---------------

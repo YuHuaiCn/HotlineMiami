@@ -1,19 +1,18 @@
 
-FollowController = class("FollowController")
+FollowController.__cname = "FollowController"
 
-FollowController._instance = nil
 FollowController._oneByOnePoints = {}   -- struct: type: point type
 										--         entryTime: the time of point pushed
 										--         entryPos:  the position of entry point
 										--         curPos:    the position of current point
 										-- hasFollowPoint 
-FollowController._touchPanel = nil
+FollowController._touchLayer = nil
 
 local POINT_TYPE_NULL   = 0
 local POINT_TYPE_ATTACK = 1
 local POINT_TYPE_FOLLOW = 2
 
-function FollowController.new(...)
+function FollowController:getInstance(...)
     if FollowController._instance == nil then
         FollowController._instance = FollowController:ctor(...)
     end
@@ -30,12 +29,34 @@ function FollowController:ctor()
     oneByOneListener:registerScriptHandler(function (...) self:touchEnded(...) end,
     										cc.Handler.EVENT_TOUCH_ENDED)
 	EventDispatcher:addEventListenerWithSceneGraphPriority(oneByOneListener, touchLayer)
-	self._touchPanel = touchLayer
+	self._touchLayer = touchLayer
+    DM:storeValue("TouchLayer", touchLayer)
 	return self
+end
+
+function FollowController:dtor(...)
+    DM:removeValue("TouchLayer")
+    FollowController._instance = nil
+    FollowController = nil
 end
 
 function FollowController:touchBegin(touch, event)
     local woldLocation = touch:getLocation()
+--test
+    local writer1 = cc.Sprite:create()
+    local body1 = cc.PhysicsBody:createCircle(25)
+    local writer2 = cc.Sprite:create()
+    local body2 = cc.PhysicsBody:createCircle(25)
+    writer1:setPhysicsBody(body1)
+    writer2:setPhysicsBody(body2)
+    writer1:setPosition(cc.p(woldLocation.x, woldLocation.y))
+    writer2:setPosition(cc.p(woldLocation.x + 50, woldLocation.y))
+    local joint = cc.PhysicsJointDistance:construct(body1, body2, cc.p(25, 0), cc.p(0, 0))
+    DM:getValue("PhysicsWorld"):addJoint(joint)
+    DM:getValue("CollisionLayer"):addChild(writer1)
+    DM:getValue("CollisionLayer"):addChild(writer2)
+--test
+
     woldLocation = cc.p(math.floor(woldLocation.x), math.floor(woldLocation.y))
     --print(string.format("touchBeigin: (%2d, %2d)", woldLocation.x, woldLocation.y))
     local oneByOnePoint = {entryPos = woldLocation, entryTime = os.clock(), 

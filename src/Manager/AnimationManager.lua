@@ -1,10 +1,9 @@
 
-AnimationManager = class("AnimationManager")
+AnimationManager.__cname = "AnimationManager"
 
-AnimationManager._instance = nil
 AnimationManager._animConfig = require "Model.AnimationData"
 
-function AnimationManager.new(...)
+function AnimationManager:getInstance(...)
     if AnimationManager._instance == nil then
         AnimationManager._instance = AnimationManager:ctor(...)
     end
