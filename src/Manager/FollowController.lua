@@ -43,18 +43,21 @@ end
 function FollowController:touchBegin(touch, event)
     local woldLocation = touch:getLocation()
 --test
-    local writer1 = cc.Sprite:create()
-    local body1 = cc.PhysicsBody:createCircle(25)
-    local writer2 = cc.Sprite:create()
-    local body2 = cc.PhysicsBody:createCircle(25)
-    writer1:setPhysicsBody(body1)
-    writer2:setPhysicsBody(body2)
-    writer1:setPosition(cc.p(woldLocation.x, woldLocation.y))
-    writer2:setPosition(cc.p(woldLocation.x + 50, woldLocation.y))
-    local joint = cc.PhysicsJointDistance:construct(body1, body2, cc.p(25, 0), cc.p(0, 0))
-    DM:getValue("PhysicsWorld"):addJoint(joint)
-    DM:getValue("CollisionLayer"):addChild(writer1)
-    DM:getValue("CollisionLayer"):addChild(writer2)
+    -- local writer1 = cc.Sprite:create()
+    -- local body1 = cc.PhysicsBody:createCircle(25)
+    -- local writer2 = cc.Sprite:create()
+    -- local body2 = cc.PhysicsBody:createCircle(25)
+    -- writer1:setPhysicsBody(body1)
+    -- writer2:setPhysicsBody(body2)
+    -- writer1:setPosition(cc.p(woldLocation.x, woldLocation.y))
+    -- writer2:setPosition(cc.p(woldLocation.x + 50, woldLocation.y))
+    -- local joint = cc.PhysicsJointDistance:construct(body1, body2, cc.p(25, 0), cc.p(0, 0))
+    -- DM:getValue("PhysicsWorld"):addJoint(joint)
+    -- DM:getValue("CollisionLayer"):addChild(writer1)
+    -- DM:getValue("CollisionLayer"):addChild(writer2)
+    -- local sprHero = DM:getValue("CurrentHero")
+    -- local heroBody = sprHero:getPhysicsBody()
+    -- heroBody:applyForce(woldLocation)
 --test
 
     woldLocation = cc.p(math.floor(woldLocation.x), math.floor(woldLocation.y))
@@ -84,7 +87,7 @@ function FollowController:touchBegin(touch, event)
 	    		if not self._oneByOnePoints.hasFollowPoint then
 	    			self._oneByOnePoints.hasFollowPoint = true
 					self._oneByOnePoints[pointIndex].type = POINT_TYPE_FOLLOW
-					CurrentHero:startFollow(self._oneByOnePoints[pointIndex].curPos)
+					DM:getValue("CurrentHero"):startFollow(self._oneByOnePoints[pointIndex].curPos)
 				else
     				--print("ATTACK point: (" .. woldLocation.x .. ', ' .. woldLocation.y .. ')')
 					self._oneByOnePoints[pointIndex].type = POINT_TYPE_ATTACK
@@ -124,7 +127,7 @@ function FollowController:touchMoved(touch, event)
 
     --print(string.format("touchMoved: (%2d, %2d)", woldLocation.x, woldLocation.y))
 	if self._oneByOnePoints[pointIndex].type == POINT_TYPE_FOLLOW then
-		CurrentHero:updateFollow(woldLocation)
+		DM:getValue("CurrentHero"):updateFollow(woldLocation)
 	end
 end
 
@@ -142,7 +145,7 @@ function FollowController:touchEnded(touch, event)
     --print(string.format("touchEnded: (%2d, %2d)", woldLocation.x, woldLocation.y))
     if self._oneByOnePoints[pointIndex].type == POINT_TYPE_FOLLOW then
     	self._oneByOnePoints.hasFollowPoint = false
-    	CurrentHero:endFollow()
+    	DM:getValue("CurrentHero"):endFollow()
     	print("Follow point: (" .. woldLocation.x .. ', ' .. woldLocation.y .. ')')
     	print("Click time: " .. (os.clock() - self._oneByOnePoints[pointIndex].entryTime))
     	table.remove(self._oneByOnePoints, pointIndex)

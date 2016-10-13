@@ -11,8 +11,10 @@ function Writer:ctor()
 	self:addChild(writerBody)
 	local bodySize = writerBody:getContentSize()
     local body = cc.PhysicsBody:createCircle(bodySize.width / 2, 
-                                {density = 10.0, friction = 1, restitution = 0.1})
+                                {density = 1.0, friction = 0, restitution = 0.1})
 	body:setContactTestBitmask(0x1)
+	body:setLinearDamping(0.5)
+	body:setAngularDamping(0.5)
 	self:setPhysicsBody(body)
 	CurrentHero = self
 end

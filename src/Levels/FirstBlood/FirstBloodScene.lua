@@ -2,7 +2,8 @@
 local FirstBloodScene = class("FirstBloodScene", function ( ... )
 	local scene = cc.Scene:createWithPhysics()
 	local world = scene:getPhysicsWorld()
-	world:setDebugDrawMask(cc.PhysicsWorld.DEBUGDRAW_ALL)
+	--world:setDebugDrawMask(cc.PhysicsWorld.DEBUGDRAW_ALL)
+	world:setSpeed(50)
 	scene:getPhysicsWorld():setGravity(cc.p(0, 0))
 	DM:storeValue("PhysicsWorld", world)
 	return scene
@@ -34,12 +35,13 @@ end
 function FirstBloodScene:test()
 	-- run anim
 	local sprWriter = Writer.new()
-	sprWriter:setPosition(300, 100)
+	sprWriter:setPosition(60, 100)
 	self._landLayer:addChild(sprWriter)
+	DM:storeValue("CurrentHero", sprWriter)
 
-	local sprWriter1 = Writer.new()
-	sprWriter1:setPosition(300, 200)
-	self._landLayer:addChild(sprWriter1)
+	-- local sprWriter1 = Writer.new()
+	-- sprWriter1:setPosition(300, 200)
+	-- self._landLayer:addChild(sprWriter1)
 end
 
 Levels.FirstBloodScene = FirstBloodScene
