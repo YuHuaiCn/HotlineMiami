@@ -60,31 +60,21 @@ function Player:endFollow()
     AM:pauseAnimation(self:getChildByName("Leg"))
 end
 
-function Player:updateLegRotation(tarPoint)
-    if not tarPoint then
-        printError("tarPoint is a nil value")
-        return
-    end
-    if math.abs(tarPoint.x - self._preFollowedPoint.x) < 10 and
-       math.abs(tarPoint.y - self._preFollowedPoint.y) < 10 then
-        return
-    end
-    local selfPoint = cc.p(self:getPosition())
-    local v2_self2tar = cc.pSub(tarPoint, selfPoint)
-    local angle = cc.pGetAngle(cc.p(1, 0), v2_self2tar)  -- anticlockwise
-    angle = angle * 180 / math.pi
-    local spLeg = self:getChildByName("Leg")
-    if spLeg then
-        spLeg:setRotation(-angle)  -- lockwise
-    end
-end
-
-
 function Player:startAttack(touch)
     -- print("Player:startAttack(touch)")
     local wdPosition = touch:getLocation()
     local lcPosition = self:getParent():convertToNodeSpace(wdPosition)
-    self:updateBodyRotation(lcPosition)
+    local spBody = self:getChildByName("Body")
+    local curRotation = spBody:getRotation()
+    local angle = self:calRotationDegree(lcPosition)
+    local trueTurn = math.abs(angle - curRotation)
+    trueTurn = trueTurn - 360 * (math.floor(trueTurn / 360))
+    if trueTurn > 180 then
+        trueTurn = 360 - trueTurn
+    end
+    local rotTime = trueTurn / (self._turnSpeed * 180 / math.pi)
+    local action = cc.RotateTo:create(rotTime, angle)
+    spBody:runAction(action)
 end
 
 function Player:updateAttack(touch)
@@ -105,12 +95,37 @@ function Player:updateBodyRotation(tarPoint)
         printError("tarPoint is a nil value")
         return
     end
+    local angle = self:calRotationDegree(tarPoint)
+    local spBody = self:getChildByName("Body")
+    if spBody then
+        spBody:setRotation(angle)  -- lockwise
+    end
+end
+
+function Player:updateLegRotation(tarPoint)
+    if not tarPoint then
+        printError("tarPoint is a nil value")
+        return
+    end
+    if math.abs(tarPoint.x - self._preFollowedPoint.x) < 10 and
+       math.abs(tarPoint.y - self._preFollowedPoint.y) < 10 then
+        return
+    end
+    local angle = self:calRotationDegree(tarPoint)
+    local spLeg = self:getChildByName("Leg")
+    if spLeg then
+        spLeg:setRotation(angle)  -- lockwise
+    end
+end
+
+function Player:calRotationDegree(tarPoint)
+    if not tarPoint then
+        printError("tarPoint is a nil value")
+        return
+    end
     local selfPoint = cc.p(self:getPosition())
     local v2_self2tar = cc.pSub(tarPoint, selfPoint)
     local angle = cc.pGetAngle(cc.p(1, 0), v2_self2tar)  -- anticlockwise
     angle = angle * 180 / math.pi
-    local spBody = self:getChildByName("Body")
-    if spBody then
-        spBody:setRotation(-angle)  -- lockwise
-    end
+    return -angle   -- clockwise
 end

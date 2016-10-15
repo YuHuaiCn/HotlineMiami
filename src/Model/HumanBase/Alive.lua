@@ -3,17 +3,17 @@ Alive = class("Alive", function (...)
     return cc.Node:create(...)
 end)
 
-local PI = 3.1415
+local PI = math.pi
 
-Alive._health            = 100   -- point
-Alive._walkSpeed         = 3     -- m/s
-Alive._runSpeed          = 6     -- m/s
-Alive._turnSpeed         = PI    -- r/s
-Alive._reactionTime      = 0.5   -- s
-Alive._alertReactionTime = 0.3   -- s
-Alive._moveInertialTime  = 0.3	 -- s time cost from static to move and move to static
-Alive._viewDist          = 20    -- m
-Alive._viewAngle         = PI/2  -- radian
+Alive._health            = 100         -- point
+Alive._walkSpeed         = 3           -- m/s
+Alive._runSpeed          = 6           -- m/s
+Alive._turnSpeed         = 3 * PI      -- r/s
+Alive._reactionTime      = 0.5         -- s
+Alive._alertReactionTime = 0.3         -- s
+Alive._moveInertialTime  = 0.3	       -- s time cost from static to move and move to static
+Alive._viewDist          = 20          -- m
+Alive._viewAngle         = PI / 2      -- radian
 
 Alive.MoveType = {
 	WALK = 1,
