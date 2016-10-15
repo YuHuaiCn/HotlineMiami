@@ -124,13 +124,13 @@ end
 
 -------------------------------------------class function-------------------------------------------
 
-function AnimationManager:runAnimation(node, animName, loop, speed)
+function AnimationManager:addAnimation(node, animName, loop)
     loop = loop or false
-    speed = speed or 1
     local path = getPathListFromString(animName)
     local frameList, tarPath = getFramesFromPath(path)
     if frameList then
         node:setSpriteFrame(frameList[1])
+        node._firstFrame = frameList[1]
         local config = getAnimConfigByPath(self, tarPath)
         if not config then
             config = {gap = 5, offset = {0, 0}}
@@ -146,7 +146,7 @@ function AnimationManager:runAnimation(node, animName, loop, speed)
         if loop then
             action = cc.RepeatForever:create(action)
         end
-        local actSpeed = cc.Speed:create(action, speed)
+        local actSpeed = cc.Speed:create(action, 0)
         node:runAction(actSpeed)
         node._animation = actSpeed
     else
@@ -159,6 +159,19 @@ function AnimationManager:setSpeed(node, speed)
     local action = node._animation
     if action then
         action:setSpeed(speed)
+    end
+end
+
+function AnimationManager:runAnimation(node, speed)
+    self:setSpeed(node, speed)
+end
+
+function AnimationManager:pauseAnimation(node)
+    local action = node._animation
+    if action then
+        action:setSpeed(0)
+        local node = action:getTarget()
+        node:setSpriteFrame(node._firstFrame)
     end
 end
 

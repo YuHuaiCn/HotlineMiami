@@ -6,8 +6,8 @@ end)
 local PI = 3.1415
 
 Alive._health            = 100   -- point
-Alive._walkSpeed         = 2     -- m/s
-Alive._runSpeed          = 4     -- m/s
+Alive._walkSpeed         = 3     -- m/s
+Alive._runSpeed          = 6     -- m/s
 Alive._turnSpeed         = PI    -- r/s
 Alive._reactionTime      = 0.5   -- s
 Alive._alertReactionTime = 0.3   -- s
@@ -27,10 +27,6 @@ function Alive:ctor(args)
 	for k, v in pairs(args) do
 		self[k] = v
 	end
-end
-
-function Alive:create()
-	return Alive.new()
 end
 
 function Alive:hurt(nDamage)
