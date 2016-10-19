@@ -1,17 +1,9 @@
 
-CollisionManager = class("CollisionManager")
+CollisionManager.__cname = "CollisionManager"
 
 CollisionManager._collisionLayer = nil
 
-function CollisionManager:getInstance(...)
-    if CollisionManager._instance == nil then
-        CollisionManager._instance = CollisionManager:ctor(...)
-    end
-    return CollisionManager._instance
-end
-
-function CollisionManager:ctor(...)
-    local collisionLayer = cc.Layer:create()
+function CollisionManager:init(layer)
 	local contactListener = cc.EventListenerPhysicsContact:create()
 	contactListener:registerScriptHandler(function (...) return self:onContactBegin(...) end,
                                             cc.Handler.EVENT_PHYSICS_CONTACT_BEGIN)
@@ -21,14 +13,13 @@ function CollisionManager:ctor(...)
                                             cc.Handler.EVENT_PHYSICS_CONTACT_POSTSOLVE)
     contactListener:registerScriptHandler(function (...) self:onContactSeperate(...) end,
                                             cc.Handler.EVENT_PHYSICS_CONTACT_SEPARATE)
-	EventDispatcher:addEventListenerWithSceneGraphPriority(contactListener, collisionLayer)
-    DM:storeValue("CollisionLayer", collisionLayer)
-    self._collisionLayer = collisionLayer
+	EventDispatcher:addEventListenerWithSceneGraphPriority(contactListener, layer)
+    self._collisionLayer = layer
 	return self
 end
 
 function CollisionManager:dtor(...)
-    DM:removeValue("CollisionLayer")
+    -- DM:removeValue("CollisionLayer")
 end
 
 function CollisionManager:onContactBegin(contact)
@@ -37,12 +28,12 @@ function CollisionManager:onContactBegin(contact)
 end
 
 function CollisionManager:onContactPreSolve(contact)
-    -- print("onContactPreSolve")
+    print("onContactPreSolve")
     return true
 end
 
 function CollisionManager:onContactPostSolve(contact)
-    -- print("onContactPostSolve")
+    print("onContactPostSolve")
 end
 
 function CollisionManager:onContactSeperate(contact)

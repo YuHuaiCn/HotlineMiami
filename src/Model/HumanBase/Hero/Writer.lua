@@ -1,8 +1,10 @@
 
 Writer = class("Writer", Player)
 
-function Writer:ctor(contSize, args)
-	Writer.super.ctor(self, contSize, args)
+Writer._bodyShape = {shape = "rect", value = {width = 15, height = 26}}
+
+function Writer:ctor(args)
+	Writer.super.ctor(self, args)
 	local writerLeg = self:getChildByName("Leg")
 	local writerBody = self:getChildByName("Body")
 	AM:addAnimation(writerLeg, 'PlayerWriterLeg', true)

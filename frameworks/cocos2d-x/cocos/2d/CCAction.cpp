@@ -254,15 +254,19 @@ void Follow::step(float dt)
         {
             return;
         }
-
+		float scaleX = _target->getScaleX();
+		float scaleY = _target->getScaleY();
         Vec2 tempPos = _halfScreenSize - _followedNode->getPosition();
 
-        _target->setPosition(clampf(tempPos.x, _leftBoundary, _rightBoundary),
-                                   clampf(tempPos.y, _bottomBoundary, _topBoundary));
+        _target->setPosition(scaleX * clampf(tempPos.x, _leftBoundary, _rightBoundary),
+                             scaleY * clampf(tempPos.y, _bottomBoundary, _topBoundary));
     }
     else
     {
-        _target->setPosition(_halfScreenSize - _followedNode->getPosition());
+		float scaleX = _target->getScaleX();
+		float scaleY = _target->getScaleY();
+		auto offset = _halfScreenSize - _followedNode->getPosition();
+        _target->setPosition(scaleX * offset.x, scaleY * offset.y);
     }
 }
 

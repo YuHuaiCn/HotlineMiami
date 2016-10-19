@@ -12,15 +12,7 @@ local POINT_TYPE_NULL   = 0
 local POINT_TYPE_ATTACK = 1
 local POINT_TYPE_FOLLOW = 2
 
-function FollowController:getInstance(...)
-    if FollowController._instance == nil then
-        FollowController._instance = FollowController:ctor(...)
-    end
-    return FollowController._instance
-end
-
-function FollowController:ctor()
-	local touchLayer = cc.Layer:create()
+function FollowController:init(layer)
 	local oneByOneListener = cc.EventListenerTouchOneByOne:create()
 	oneByOneListener:registerScriptHandler(function (...) return self:touchBegin(...) end, 
 											cc.Handler.EVENT_TOUCH_BEGAN)
@@ -28,14 +20,11 @@ function FollowController:ctor()
     										cc.Handler.EVENT_TOUCH_MOVED)
     oneByOneListener:registerScriptHandler(function (...) self:touchEnded(...) end,
     										cc.Handler.EVENT_TOUCH_ENDED)
-	EventDispatcher:addEventListenerWithSceneGraphPriority(oneByOneListener, touchLayer)
-	self._touchLayer = touchLayer
-    DM:storeValue("TouchLayer", touchLayer)
+	EventDispatcher:addEventListenerWithSceneGraphPriority(oneByOneListener, layer)
 	return self
 end
 
 function FollowController:dtor(...)
-    DM:removeValue("TouchLayer")
     FollowController._instance = nil
     FollowController = nil
 end

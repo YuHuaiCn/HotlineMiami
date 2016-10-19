@@ -1,30 +1,9 @@
 
-local FirstBloodScene = class("FirstBloodScene", function ( ... )
-	local scene = cc.Scene:createWithPhysics()
-	local world = scene:getPhysicsWorld()
-	--world:setDebugDrawMask(cc.PhysicsWorld.DEBUGDRAW_ALL)
-	world:setSpeed(50)
-	scene:getPhysicsWorld():setGravity(cc.p(0, 0))
-	DM:storeValue("PhysicsWorld", world)
-	return scene
-end)
-
-FirstBloodScene._landLayer = nil
+local FirstBloodScene = class("FirstBloodScene", Levels.BaseScene)
 
 function FirstBloodScene:ctor()
-	local followController = FollowController:getInstance()
-	self:addChild(followController._touchLayer, 100)
-	local collisionManager = CollisionManager:getInstance()
-	local map = cc.TMXTiledMap:create("res/Maps/Test/TestLevel.tmx")
-	collisionManager._collisionLayer:addChild(map)
-	local body = cc.PhysicsBody:createEdgeBox(VisibleSize, {density = 1.0, friction = 0.5, restitution = 1.0})
-	local edgeNode = cc.Node:create()
-	edgeNode:setPosition(cc.p(VisibleSize.width / 2, VisibleSize.height / 2))
-	edgeNode:setPhysicsBody(body)
-	collisionManager._collisionLayer:addChild(edgeNode)
-	self:addChild(collisionManager._collisionLayer)
-	self._landLayer = collisionManager._collisionLayer
-	DM:aliasValue("CollisionLayer", "LandLayer")
+	self.super.ctor(self, "res/Maps/Test/TestLevel.tmx")
+	self._landLayer:setScale(2)
 	self:test()
 end
 
@@ -35,13 +14,23 @@ end
 function FirstBloodScene:test()
 	-- run anim
 	local sprWriter = Writer.new()
-	sprWriter:setPosition(60, 100)
-	self._landLayer:addChild(sprWriter)
+	sprWriter:setPosition(480, 100)
+	local landLayer = DM:getValue("LandLayer")
+	landLayer:addChild(sprWriter)
+	local layerSize = landLayer:getContentSize()
+	local scaleX = landLayer:getScaleX()
+	local scaleY = landLayer:getScaleY()
+	layerSize = {width = scaleX * layerSize.width, height = scaleY * layerSize.height}
+	-- 当sprWriter超出rect的范围则不跟踪。
+	-- 关于rect的计算：
+	-- layer:setScale(2)是以Scene的中心为基准进行放缩的。
+	-- 所以放缩后的layer原点坐标如下。Follow的rect原点也应该是下点。
+	-- cc.p(VisibleSize.width / 2 - layerSize.width / 2, VisibleSize.height / 2 - layerSize.height / 2)
+	local actFollow = cc.Follow:create(sprWriter, 
+						cc.rect(VisibleSize.width / 2 - layerSize.width / 2, 
+							VisibleSize.height / 2 - layerSize.height / 2, layerSize.width, layerSize.height))
+	landLayer:runAction(actFollow)
 	DM:storeValue("CurrentHero", sprWriter)
-
-	-- local sprWriter1 = Writer.new()
-	-- sprWriter1:setPosition(300, 200)
-	-- self._landLayer:addChild(sprWriter1)
 end
 
 Levels.FirstBloodScene = FirstBloodScene

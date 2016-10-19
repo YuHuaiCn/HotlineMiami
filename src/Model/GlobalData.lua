@@ -14,6 +14,8 @@ cc.exports.CM = {}
 cc.exports.FollowController = {}
 cc.exports.DataManager = {}
 cc.exports.DM = {}
+cc.exports.TiledMapManager = {}
+cc.exports.TMM = {}
 
 
 --------------- Variate ---------------

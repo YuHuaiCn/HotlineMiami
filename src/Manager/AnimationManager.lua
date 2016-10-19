@@ -139,6 +139,8 @@ function AnimationManager:addAnimation(node, animName, loop)
         local offset = config.offset
         node:setPosition(offset[1], offset[2])
         -- create animation
+        -- local animation = cc.Animation:createWithSpriteFrames(
+        --                         frameList, config.gap * Director:getAnimationInterval())
         local animation = cc.Animation:createWithSpriteFrames(frameList, config.gap / 60)
         animation:setRestoreOriginalFrame(true)
         -- crate action
