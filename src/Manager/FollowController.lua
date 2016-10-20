@@ -54,7 +54,19 @@ function FollowController:touchBegin(touch, event)
             -- if not exist FOLLOW_POINT set touch's type POINT_TYPE_FOLLOW
             if touch._type == POINT_TYPE_NULL then
                 touch._type = POINT_TYPE_FOLLOW
-                DM:getValue("CurrentHero"):startFollow(touch)
+                local hero = DM:getValue("CurrentHero")
+                hero:startFollow(touch)
+                -- 添加_synMoveEntry定时器，用于同步touch和mouse
+                local synMoveEntry
+                local function synMovePoint()
+                    if touch._type ~= POINT_TYPE_FOLLOW and synMoveEntry then
+                        Scheduler:unscheduleScriptEntry(synMoveEntry)
+                        synMoveEntry = nil
+                        return
+                    end
+                    hero:updateFollow(touch)
+                end
+                synMoveEntry = Scheduler:scheduleScriptFunc(synMovePoint, 0.2, false)
             end
         end 
     end
@@ -87,3 +99,22 @@ function FollowController:touchEnded(touch, event)
         end
     end
 end
+
+-- 设置跟随摄像机
+function FollowController:initCamera(layer, followNode)
+    local layerSize = layer:getContentSize()
+    local scaleX = layer:getScaleX()
+    local scaleY = layer:getScaleY()
+    layerSize = {width = scaleX * layerSize.width, height = scaleY * layerSize.height}
+    -- 当sprWriter超出rect的范围则不跟踪。
+    -- 关于rect的计算：
+    -- layer:setScale(2)是以Scene的中心为基准进行放缩的。
+    -- 所以放缩后的layer原点坐标如下。Follow的rect原点也应该是下点。
+    -- cc.p(VisibleSize.width / 2 - layerSize.width / 2, VisibleSize.height / 2 - layerSize.height / 2)
+    local actFollow = cc.Follow:create(followNode, 
+                        cc.rect(VisibleSize.width / 2 - layerSize.width / 2, 
+                            VisibleSize.height / 2 - layerSize.height / 2, layerSize.width, layerSize.height))
+    layer:runAction(actFollow)
+end
+
+FC = FollowController

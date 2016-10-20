@@ -5,6 +5,7 @@ cc.exports.Player = {}
 cc.exports.Writer = {}
 
 cc.exports.Levels = {}
+cc.exports.Weapon = {}
 
 cc.exports.Manager = {}
 cc.exports.AnimationManager = {}
@@ -12,6 +13,7 @@ cc.exports.AM = {}
 cc.exports.CollisionManager = {}
 cc.exports.CM = {}
 cc.exports.FollowController = {}
+cc.exports.FC = {}
 cc.exports.DataManager = {}
 cc.exports.DM = {}
 cc.exports.TiledMapManager = {}

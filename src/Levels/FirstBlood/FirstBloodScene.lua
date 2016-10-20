@@ -16,21 +16,13 @@ function FirstBloodScene:test()
 	local sprWriter = Writer.new()
 	sprWriter:setPosition(480, 100)
 	local landLayer = DM:getValue("LandLayer")
-	landLayer:addChild(sprWriter)
-	local layerSize = landLayer:getContentSize()
-	local scaleX = landLayer:getScaleX()
-	local scaleY = landLayer:getScaleY()
-	layerSize = {width = scaleX * layerSize.width, height = scaleY * layerSize.height}
-	-- 当sprWriter超出rect的范围则不跟踪。
-	-- 关于rect的计算：
-	-- layer:setScale(2)是以Scene的中心为基准进行放缩的。
-	-- 所以放缩后的layer原点坐标如下。Follow的rect原点也应该是下点。
-	-- cc.p(VisibleSize.width / 2 - layerSize.width / 2, VisibleSize.height / 2 - layerSize.height / 2)
-	local actFollow = cc.Follow:create(sprWriter, 
-						cc.rect(VisibleSize.width / 2 - layerSize.width / 2, 
-							VisibleSize.height / 2 - layerSize.height / 2, layerSize.width, layerSize.height))
-	landLayer:runAction(actFollow)
+	landLayer:addChild(sprWriter, 10)
+	FC:initCamera(landLayer, sprWriter)
 	DM:storeValue("CurrentHero", sprWriter)
+	-- add Weapon
+	local spr9mm = Weapon.nineMM.new()
+	spr9mm:setPosition(500, 100)
+	landLayer:addChild(spr9mm, 9)
 end
 
 Levels.FirstBloodScene = FirstBloodScene

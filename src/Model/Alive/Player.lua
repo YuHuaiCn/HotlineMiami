@@ -31,9 +31,6 @@ function Player:ctor(args)
     body:setLinearDamping(26.8)
     body:setAngularDamping(10)
     body:setMoment(50000)
-    -- local offset = self._bodyShape.offset
-    -- offset = offset or cc.p(0, 0)
-    -- body:setPositionOffset(offset)
     self:setPhysicsBody(body)
 end
 
@@ -55,6 +52,8 @@ function Player:startFollow(touch)
     DM:getValue("PhysicsWorld"):addJoint(joint)
     -- run leg animation
     AM:runAnimation(self:getChildByName("Leg"))
+    -- run body anim
+    AM:runAnimation(self:getChildByName("Body"))
     -- init leg rotation
     self._preFollowedPoint = cc.p(-1000, -1000)
     self:updateLegRotation(lcPosition)
@@ -73,6 +72,8 @@ function Player:endFollow()
     self._preFollowedPoint = cc.p(-1000, -1000)
     -- pause leg animation
     AM:pauseAnimation(self:getChildByName("Leg"))
+    -- pause body anim
+    AM:pauseAnimation(self:getChildByName("Body"))
 end
 
 function Player:startAttack(touch)

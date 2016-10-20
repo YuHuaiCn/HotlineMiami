@@ -3,6 +3,8 @@ AnimationManager.__cname = "AnimationManager"
 
 AnimationManager._animConfig = require "Model.AnimationData"
 
+local frameCache = cc.SpriteFrameCache:getInstance()
+
 function AnimationManager:getInstance(...)
     if AnimationManager._instance == nil then
         AnimationManager._instance = AnimationManager:ctor(...)
@@ -55,7 +57,6 @@ local function getFramesFromPath(path)
     local frameList = {}
     local animPathHome = "Atlases/" .. table.concat(path, '/', 1, 2)  -- path of anim eg: Atlases/Player/Write
     local plistName = string.format("%s/%s.plist", animPathHome, path[1] .. path[2])
-    local frameCache = cc.SpriteFrameCache:getInstance()
     frameCache:addSpriteFrames(plistName)
 
     -- load Frames from FrameCache
@@ -175,6 +176,11 @@ function AnimationManager:pauseAnimation(node)
         local node = action:getTarget()
         node:setSpriteFrame(node._firstFrame)
     end
+end
+
+function AnimationManager:addWeaponImgToCache()
+    local frameCache = cc.SpriteFrameCache:getInstance()
+    frameCache:addSpriteFrames("Atlases/Weapon/Weapons.plist")
 end
 
 AM = AnimationManager

@@ -7,8 +7,9 @@ require "cocos.init"
 require "init"
 
 local function init()
-	-- Director:getOpenGLView():setFrameSize(480, 320)
-	-- VisibleSize = Director:getVisibleSize()
+	local winSize = Director:getWinSize()
+	Director:getOpenGLView():setFrameSize(winSize.width, winSize.height)
+	VisibleSize = winSize
 end
 
 local function main()
