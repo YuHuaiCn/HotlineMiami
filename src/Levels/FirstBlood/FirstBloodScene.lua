@@ -22,6 +22,8 @@ function FirstBloodScene:test()
 	-- add Weapon
 	local spr9mm = Weapon.nineMM.new()
 	spr9mm:setPosition(500, 100)
+	spr9mm:setRotation(180)
+	spr9mm:runAnimLandedWeapon()
 	landLayer:addChild(spr9mm, 9)
 end
 

@@ -4,6 +4,14 @@ Player = class("Player", Alive)
 Player._preFollowedPoint = cc.p(-1000, -1000)
 Player._mouse = nil
 Player._bodyShape = nil  -- {shape = "rect", value = {width = 15, height = 26}, offset = cc.p(-2, 0)}
+Player._weapon = nil
+-- 回调函数
+Player.onStartAttack = nil
+Player.onUpdateAttack = nil
+Player.onEndAttack = nil
+
+
+
 
 local PLAYER_CONTACT_MASK   = 0x1
 local PLAYER_CATEGORY_MASK  = 0x1
@@ -34,11 +42,10 @@ function Player:ctor(args)
     self:setPhysicsBody(body)
 end
 
-function Player:startFollow(touch)
-	local wdPosition = touch:getLocation()
-	local lcPosition = self:getParent():convertToNodeSpace(wdPosition)
+function Player:startFollow(touchPoint)
+	local lcPosition = self:getParent():convertToNodeSpace(touchPoint)
 	-- creat follow point: mouse
-    local mouse = cc.Node:create()
+    local mouse = cc.Sprite:create("Atlases/Weapon/Bat.png")
     local mouseBody = cc.PhysicsBody:create(PHYSICS_INFINITY, PHYSICS_INFINITY)
     mouseBody:setDynamic(false)
     mouse:setPhysicsBody(mouseBody)
@@ -59,9 +66,8 @@ function Player:startFollow(touch)
     self:updateLegRotation(lcPosition)
 end
 
-function Player:updateFollow(touch)
-	local wdPosition = touch:getLocation()
-	local lcPosition = self:getParent():convertToNodeSpace(wdPosition)
+function Player:updateFollow(touchPoint)
+	local lcPosition = self:getParent():convertToNodeSpace(touchPoint)
 	self._mouse:setPosition(lcPosition)
     self:updateLegRotation(lcPosition)
 end
@@ -76,9 +82,8 @@ function Player:endFollow()
     AM:pauseAnimation(self:getChildByName("Body"))
 end
 
-function Player:startAttack(touch)
-    local wdPosition = touch:getLocation()
-    local lcPosition = self:getParent():convertToNodeSpace(wdPosition)
+function Player:startAttack(touchPoint)
+    local lcPosition = self:getParent():convertToNodeSpace(touchPoint)
     -- local spBody = self:getChildByName("Body")
     local curRotation = self:getRotation()
     local angle = self:calRotationDegree(lcPosition)
@@ -90,13 +95,14 @@ function Player:startAttack(touch)
     end
     local rotTime = trueTurn / (self._turnSpeed * 180 / math.pi)
     local action = cc.RotateTo:create(rotTime, angle)
-    self:runAction(action)
+    local acf = cc.CallFunc:create(self.onStartAttack)
+    local seq = cc.Sequence:create(action, acf)
+    self:runAction(seq)
 end
 
-function Player:updateAttack(touch)
+function Player:updateAttack(touchPoint)
     -- print("Player:updateAttack(touch)")
-    local wdPosition = touch:getLocation()
-    local lcPosition = self:getParent():convertToNodeSpace(wdPosition)
+    local lcPosition = self:getParent():convertToNodeSpace(touchPoint)
     self:updateBodyRotation(lcPosition)
 end
 

@@ -7,9 +7,15 @@ require "cocos.init"
 require "init"
 
 local function init()
-	local winSize = Director:getWinSize()
-	Director:getOpenGLView():setFrameSize(winSize.width, winSize.height)
-	VisibleSize = winSize
+	local glView = Director:getOpenGLView()
+	local designSize = {width = 960, height = 640}
+	local viewSize = glView:getFrameSize()
+	if viewSize.width / viewSize.height > 1.5 then
+		glView:setDesignResolutionSize(designSize.width, designSize.height, cc.ResolutionPolicy.FIXED_HEIGHT)
+	else
+		glView:setDesignResolutionSize(designSize.width, designSize.height, cc.ResolutionPolicy.FIXED_WIDTH)
+	end
+	VisibleSize = Director:getVisibleSize()
 end
 
 local function main()

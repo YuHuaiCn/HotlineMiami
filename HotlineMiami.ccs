@@ -14810,6 +14810,9 @@
             <PlistInfo Name="Weapons.csi" Type="Plist" />
           </Folder>
         </Folder>
+        <Folder Name="Ui">
+          <Project Name="MenuLayer.csd" Type="Layer" />
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>

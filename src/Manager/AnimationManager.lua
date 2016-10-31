@@ -1,3 +1,18 @@
+--[[
+
+addAnimation(node, animName, loop = false)
+    det: 为node添加动画，初始动画速度为0
+    arg: [1]: node [2]: 动画名由动画全路径组成 eg:PlayerWriterWalkUnarmed [3]: 是否循环播放
+    ret: [1]: actSpeed动画 [2]: 初始帧动画
+
+setSpeed(node, speed = 1)
+    det: 设置node动画的播放速度
+
+runAnimation(node, speed = 1)
+    det: 播放node已添加的动画
+
+--]]
+
 
 AnimationManager.__cname = "AnimationManager"
 
@@ -57,7 +72,9 @@ local function getFramesFromPath(path)
     local frameList = {}
     local animPathHome = "Atlases/" .. table.concat(path, '/', 1, 2)  -- path of anim eg: Atlases/Player/Write
     local plistName = string.format("%s/%s.plist", animPathHome, path[1] .. path[2])
-    frameCache:addSpriteFrames(plistName)
+    if not frameCache:isSpriteFramesWithFileLoaded(plistName) then
+        frameCache:addSpriteFrames(plistName)
+    end
 
     -- load Frames from FrameCache
     local frames = 0
@@ -125,20 +142,20 @@ end
 
 -------------------------------------------class function-------------------------------------------
 
-function AnimationManager:addAnimation(node, animName, loop)
+function AnimationManager:addAnimation(sprite, animName, loop)
     loop = loop or false
     local path = getPathListFromString(animName)
     local frameList, tarPath = getFramesFromPath(path)
     if frameList then
-        node:setSpriteFrame(frameList[1])
-        node._firstFrame = frameList[1]
+        sprite:setSpriteFrame(frameList[1])
+        sprite._firstFrame = frameList[1]
         local config = getAnimConfigByPath(self, tarPath)
         if not config then
             config = {gap = 5, offset = {0, 0}}
         end
         -- set offset
         local offset = config.offset
-        node:setPosition(offset[1], offset[2])
+        sprite:setPosition(offset[1], offset[2])
         -- create animation
         -- local animation = cc.Animation:createWithSpriteFrames(
         --                         frameList, config.gap * Director:getAnimationInterval())
@@ -150,8 +167,9 @@ function AnimationManager:addAnimation(node, animName, loop)
             action = cc.RepeatForever:create(action)
         end
         local actSpeed = cc.Speed:create(action, 0)
-        node:runAction(actSpeed)
-        node._animation = actSpeed
+        sprite:runAction(actSpeed)
+        sprite._animation = actSpeed
+        return actSpeed, frameList[1]
     else
         printError("Can't find anim: " .. animName)
     end       
@@ -178,9 +196,24 @@ function AnimationManager:pauseAnimation(node)
     end
 end
 
-function AnimationManager:addWeaponImgToCache()
-    local frameCache = cc.SpriteFrameCache:getInstance()
-    frameCache:addSpriteFrames("Atlases/Weapon/Weapons.plist")
+function AnimationManager:addImgToCache(name)
+    if name == "Weapon" then
+        frameCache:addSpriteFrames("Atlases/Weapon/Weapons.plist")
+    end
+end
+
+function AnimationManager:runAnimLandedWeapon(weaponSpr)
+    local posX, posY = weaponSpr:getPosition()
+    local body = weaponSpr:getChildByName("Body")
+    local bg = weaponSpr:getChildByName("Background")
+    bg:setColor(cc.c3b(0, 0, 0))
+    bg:setOpacity(128)
+    bg:setPosition(weaponSpr:convertToNodeSpace(cc.p(posX, posY - 2)))
+    local action = cc.MoveBy:create(0.85, weaponSpr:convertToNodeSpace(cc.p(posX, posY + 2)))
+    local reAction = action:reverse()
+    local seq = cc.Sequence:create(action, reAction)
+    local repAct = cc.RepeatForever:create(seq)
+    body:runAction(repAct)
 end
 
 AM = AnimationManager

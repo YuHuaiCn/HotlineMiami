@@ -12,13 +12,13 @@ end)
 BaseScene._landLayer = nil
 
 function BaseScene:ctor(tmxMap)
-	local landLayer = cc.Layer:create() 
+	local landLayer = cc.Layer:create()
 	local map = TMM:createMap(tmxMap, landLayer)
 	FollowController:init(landLayer)
 	CollisionManager:init(landLayer)
 	local mapSize = map:getMapSize()
 	local tileSize = map:getTileSize()
-	local size = {width = mapSize.width * tileSize.width + VisibleSize.width, 
+	local size = {width = mapSize.width * tileSize.width + VisibleSize.width,
 					height = mapSize.height * tileSize.height + VisibleSize.height}
 	local body = cc.PhysicsBody:createEdgeBox(size, {density = 1.0, friction = 0.5, restitution = 1.0})
 	local edgeNode = cc.Node:create()
