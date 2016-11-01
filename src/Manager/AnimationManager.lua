@@ -141,7 +141,7 @@ end
 
 
 -------------------------------------------class function-------------------------------------------
-
+-- 优化：暂存animation
 function AnimationManager:addAnimation(sprite, animName, loop)
     loop = loop or false
     local path = getPathListFromString(animName)
@@ -167,12 +167,46 @@ function AnimationManager:addAnimation(sprite, animName, loop)
             action = cc.RepeatForever:create(action)
         end
         local actSpeed = cc.Speed:create(action, 0)
+        sprite:stopAllActions()
         sprite:runAction(actSpeed)
         sprite._animation = actSpeed
         return actSpeed, frameList[1]
     else
         printError("Can't find anim: " .. animName)
-    end       
+    end
+end
+
+-- function AnimationManager:createAnimByName(animName, loop)
+--     loop = loop or false
+--     local path = getPathListFromString(animName)
+--     local frameList, tarPath = getFramesFromPath(path)
+--     if frameList then
+--         local config = getAnimConfigByPath(self, tarPath)
+--         if not config then
+--             config = {gap = 5, offset = {0, 0}}
+--         end
+--         -- set offset
+--         local offset = config.offset
+--         -- create animation
+--         local animation = cc.Animation:createWithSpriteFrames(frameList, config.gap / 60)
+--         animation:setRestoreOriginalFrame(true)
+--         -- crate action
+--         local action = cc.Animate:create(animation)
+--         if loop then
+--             action = cc.RepeatForever:create(action)
+--         end
+--         return cc.Speed:create(action, 0)
+--     else
+--         printError("Can't find anim: " .. animName)
+--     end
+-- end
+
+function AnimationManager:flipX(animation)
+    local speed = animation:getSpeed()
+    local action = animation:getInnerAction()
+    local actFlipX = cc.FlipX:create(true)
+
+
 end
 
 function AnimationManager:setSpeed(node, speed)
@@ -202,6 +236,7 @@ function AnimationManager:addImgToCache(name)
     end
 end
 
+-- 不要主动调用这个函数，应该使用weaponSpr:runAnimLandedWeapon()
 function AnimationManager:runAnimLandedWeapon(weaponSpr)
     local posX, posY = weaponSpr:getPosition()
     local body = weaponSpr:getChildByName("Body")

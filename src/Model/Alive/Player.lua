@@ -5,12 +5,12 @@ Player._preFollowedPoint = cc.p(-1000, -1000)
 Player._mouse = nil
 Player._bodyShape = nil  -- {shape = "rect", value = {width = 15, height = 26}, offset = cc.p(-2, 0)}
 Player._weapon = nil
+Player._animation = nil
 -- 回调函数
 Player.onStartAttack = nil
 Player.onUpdateAttack = nil
 Player.onEndAttack = nil
-
-
+Player._animName = ""  -- 当前_animation中动画的名称
 
 
 local PLAYER_CONTACT_MASK   = 0x1
@@ -47,6 +47,7 @@ function Player:startFollow(touchPoint)
 	-- creat follow point: mouse
     local mouse = cc.Sprite:create("Atlases/Weapon/Bat.png")
     local mouseBody = cc.PhysicsBody:create(PHYSICS_INFINITY, PHYSICS_INFINITY)
+    local spBody = self:getChildByName("Body")
     mouseBody:setDynamic(false)
     mouse:setPhysicsBody(mouseBody)
     mouse:setPosition(lcPosition)
@@ -60,7 +61,9 @@ function Player:startFollow(touchPoint)
     -- run leg animation
     AM:runAnimation(self:getChildByName("Leg"))
     -- run body anim
-    AM:runAnimation(self:getChildByName("Body"))
+    if self._animName ~= "WalkUnarmed" then
+        AM:addAnimation(spBody, )
+    AM:runAnimation(spBody)
     -- init leg rotation
     self._preFollowedPoint = cc.p(-1000, -1000)
     self:updateLegRotation(lcPosition)

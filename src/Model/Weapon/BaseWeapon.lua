@@ -18,10 +18,10 @@ end
 
 -- 武器躺在地上稳定后调用
 function BaseWeapon:runAnimLandedWeapon()
-	local spriteFrame = frameCache:getSpriteFrameByName(self._imgName)
+	local spriteFrame = frameCache:getSpriteFrame(self._imgName)
 	if not spriteFrame then
 		AM:addImgToCache("Weapon")
-		spriteFrame = frameCache:getSpriteFrameByName(self._imgName)
+		spriteFrame = frameCache:getSpriteFrame(self._imgName)
 	end
 	local posX, posY = self:getPosition()
 	local bg = cc.Sprite:createWithSpriteFrame(spriteFrame)
