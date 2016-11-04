@@ -6,12 +6,18 @@ Player._mouse = nil
 Player._bodyShape = nil  -- {shape = "rect", value = {width = 15, height = 26}, offset = cc.p(-2, 0)}
 Player._weapon = nil
 Player._animation = nil
+Player._spBody = nil
+Player._spLeg = nil
 -- 回调函数
-Player.onStartAttack = nil
-Player.onUpdateAttack = nil
-Player.onEndAttack = nil
+Player.startAttackCallback = nil
+Player.updateAttackCallback = nil
+Player.endAttackCallback = nil
 Player._animName = ""  -- 当前_animation中动画的名称
+Player._state = 0
 
+-- player state
+local PLAYER_STATE_ATTACKING = 1
+local PALYER_STATE_NULL = 0
 
 local PLAYER_CONTACT_MASK   = 0x1
 local PLAYER_CATEGORY_MASK  = 0x1
@@ -21,10 +27,12 @@ local PLAYER_MATERIAL = {density = 0.1, friction = 0, restitution = 0.1}
 
 function Player:ctor(args)
     Player.super.ctor(self, args)
-    local writerLeg = cc.Sprite:create()
-    local writerBody = cc.Sprite:create()
-    self:addChild(writerLeg, 0, "Leg")
-    self:addChild(writerBody, 0, "Body")
+    local spLeg = cc.Sprite:create()
+    local spBody = cc.Sprite:create()
+    self:addChild(spLeg, 0, "Leg")
+    self:addChild(spBody, 0, "Body")
+    self._spBody = spBody
+    self._spLeg  = spLeg
     local body
     if self._bodyShape.shape == "rect" then
         body = cc.PhysicsBody:createBox(self._bodyShape.value, PLAYER_MATERIAL)
@@ -61,8 +69,6 @@ function Player:startFollow(touchPoint)
     -- run leg animation
     AM:runAnimation(self:getChildByName("Leg"))
     -- run body anim
-    if self._animName ~= "WalkUnarmed" then
-        AM:addAnimation(spBody, )
     AM:runAnimation(spBody)
     -- init leg rotation
     self._preFollowedPoint = cc.p(-1000, -1000)
@@ -98,8 +104,28 @@ function Player:startAttack(touchPoint)
     end
     local rotTime = trueTurn / (self._turnSpeed * 180 / math.pi)
     local action = cc.RotateTo:create(rotTime, angle)
-    local acf = cc.CallFunc:create(self.onStartAttack)
+    local acf = cc.CallFunc:create(self.startAttackCallback)
     local seq = cc.Sequence:create(action, acf)
+    self._state = PLAYER_STATE_ATTACKING
+    self:runAction(seq)
+end
+
+function Player:turnToPoint(touchPoint)
+    local lcPosition = self:getParent():convertToNodeSpace(touchPoint)
+    -- local spBody = self:getChildByName("Body")
+    local curRotation = self:getRotation()
+    local angle = self:calRotationDegree(lcPosition)
+    -- calculate turn degree
+    local trueTurn = math.abs(angle - curRotation)
+    trueTurn = trueTurn - 360 * (math.floor(trueTurn / 360))
+    if trueTurn > 180 then
+        trueTurn = 360 - trueTurn
+    end
+    local rotTime = trueTurn / (self._turnSpeed * 180 / math.pi)
+    local action = cc.RotateTo:create(rotTime, angle)
+    local acf = cc.CallFunc:create(self.turnEndCallback)
+    local seq = cc.Sequence:create(action, acf)
+    self._state = PLAYER_STATE_ATTACKING
     self:runAction(seq)
 end
 
@@ -110,8 +136,7 @@ function Player:updateAttack(touchPoint)
 end
 
 function Player:endAttack()
-    -- print("Player:endAttack()")
-
+    
 end
 
 function Player:updateBodyRotation(tarPoint)
