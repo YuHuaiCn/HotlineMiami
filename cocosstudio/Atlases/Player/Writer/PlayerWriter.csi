@@ -1,9 +1,7 @@
 <PlistInfoProjectFile>
-  <PropertyGroup Name="PlayerWriter" Type="Plist" ID="57685b1c-9092-4e34-8efb-53ce5fd6d66d" Version="3.10.0.0" />
+  <PropertyGroup Name="PlayerWriter" Type="Plist" ID="caff0bca-3629-435d-a3be-d226fcf22a51" Version="3.10.0.0" />
   <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="False" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
-      <FilePathData Path="Atlases/Player/Writer/Attack/9mm/000.png" />
-      <FilePathData Path="Atlases/Player/Writer/Attack/9mm/001.png" />
       <FilePathData Path="Atlases/Player/Writer/Attack/Barrel1/000.png" />
       <FilePathData Path="Atlases/Player/Writer/Attack/Barrel1/001.png" />
       <FilePathData Path="Atlases/Player/Writer/Attack/Barrel1/002.png" />
@@ -54,6 +52,8 @@
       <FilePathData Path="Atlases/Player/Writer/Attack/M16/001.png" />
       <FilePathData Path="Atlases/Player/Writer/Attack/Magnum/000.png" />
       <FilePathData Path="Atlases/Player/Writer/Attack/Magnum/001.png" />
+      <FilePathData Path="Atlases/Player/Writer/Attack/Nmm/000.png" />
+      <FilePathData Path="Atlases/Player/Writer/Attack/Nmm/001.png" />
       <FilePathData Path="Atlases/Player/Writer/Attack/Pipe/000.png" />
       <FilePathData Path="Atlases/Player/Writer/Attack/Pipe/001.png" />
       <FilePathData Path="Atlases/Player/Writer/Attack/Pipe/002.png" />
@@ -539,14 +539,26 @@
       <FilePathData Path="Atlases/Player/Writer/Type/001.png" />
       <FilePathData Path="Atlases/Player/Writer/Type/002.png" />
       <FilePathData Path="Atlases/Player/Writer/Type/003.png" />
-      <FilePathData Path="Atlases/Player/Writer/Walk/9mm/000.png" />
-      <FilePathData Path="Atlases/Player/Writer/Walk/9mm/001.png" />
-      <FilePathData Path="Atlases/Player/Writer/Walk/9mm/002.png" />
-      <FilePathData Path="Atlases/Player/Writer/Walk/9mm/003.png" />
-      <FilePathData Path="Atlases/Player/Writer/Walk/9mm/004.png" />
-      <FilePathData Path="Atlases/Player/Writer/Walk/9mm/005.png" />
-      <FilePathData Path="Atlases/Player/Writer/Walk/9mm/006.png" />
-      <FilePathData Path="Atlases/Player/Writer/Walk/9mm/007.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterInterviewRat/000.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterInterviewRat/001.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterStandRat/000.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterStandRat/001.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterStandRat/002.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterStandRat/003.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterStandRat/004.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterStandRat/005.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterStandRat/006.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterWriteRat/000.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterWriteRat/001.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterWriteRat/002.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterWriteRat/003.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterWriteRat/004.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterWriteRat/005.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterWriteRat/006.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterWriteRat/007.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterWriteRat/008.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterWriteRat/009.png" />
+      <FilePathData Path="Atlases/Player/Writer/unused/sprWriterWriteRat/010.png" />
       <FilePathData Path="Atlases/Player/Writer/Walk/Barrel/000.png" />
       <FilePathData Path="Atlases/Player/Writer/Walk/Barrel/001.png" />
       <FilePathData Path="Atlases/Player/Writer/Walk/Barrel/002.png" />
@@ -611,6 +623,14 @@
       <FilePathData Path="Atlases/Player/Writer/Walk/Magnum/005.png" />
       <FilePathData Path="Atlases/Player/Writer/Walk/Magnum/006.png" />
       <FilePathData Path="Atlases/Player/Writer/Walk/Magnum/007.png" />
+      <FilePathData Path="Atlases/Player/Writer/Walk/Nmm/000.png" />
+      <FilePathData Path="Atlases/Player/Writer/Walk/Nmm/001.png" />
+      <FilePathData Path="Atlases/Player/Writer/Walk/Nmm/002.png" />
+      <FilePathData Path="Atlases/Player/Writer/Walk/Nmm/003.png" />
+      <FilePathData Path="Atlases/Player/Writer/Walk/Nmm/004.png" />
+      <FilePathData Path="Atlases/Player/Writer/Walk/Nmm/005.png" />
+      <FilePathData Path="Atlases/Player/Writer/Walk/Nmm/006.png" />
+      <FilePathData Path="Atlases/Player/Writer/Walk/Nmm/007.png" />
       <FilePathData Path="Atlases/Player/Writer/Walk/Pipe/000.png" />
       <FilePathData Path="Atlases/Player/Writer/Walk/Pipe/001.png" />
       <FilePathData Path="Atlases/Player/Writer/Walk/Pipe/002.png" />

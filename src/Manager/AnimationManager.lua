@@ -34,7 +34,7 @@ end
 local function getAnimConfigByPath(self, path)
     local config = self._animConfig
     -- get config  path is start with 'Atlases/' so remove it
-    for subPath in path:sub(9, -1):gmatch("%a+") do
+    for subPath in path:sub(9, -1):gmatch("%w+") do
         config = config[subPath]
         if not config then
             break
@@ -98,19 +98,19 @@ local function getFramesFromPath(path)
         local animPath
         if pathName == 'normal' then
             if #path < 3 then
-                printError("Can't find anim: " .. table.concat(path, '/'))
+                print("Can't find anim: " .. table.concat(path, '/'))
                 return
             end
             animPath = animPathHome .. '/' .. table.concat(path, '/', 3)
         elseif pathName == 'father' then
             if #path < 4 then
-                printError("Can't find anim: " .. table.concat(path, '/'))
+                print("Can't find anim: " .. table.concat(path, '/'))
                 return
             end
             animPath = animPathHome .. '/' .. table.concat(path, '/', 3, #path - 1) .. path[#path]
         elseif pathName == "grand" then
             if #path < 5 then
-                printError("Can't find anim: " .. table.concat(path, '/'))
+                print("Can't find anim: " .. table.concat(path, '/'))
                 return
             end
             animPath = animPathHome .. '/' .. table.concat(path, '/', 3, #path - 2) .. path[#path - 1] .. path[#path]
@@ -154,12 +154,12 @@ function AnimationManager:addAnimation(sprite, animName, loop)
             config = {gap = 5, offset = {0, 0}}
         end
         -- set offset
-        local offset = config.offset
-        sprite:setPosition(offset[1], offset[2])
+        local of = config.offset
+        local cS = sprite:getContentSize()
+        local anchor = cc.p(0.5 - of[1] / cS.width, 0.5 - of[2] / cS.width)
+        sprite:setAnchorPoint(anchor)
         -- create animation
-        -- local animation = cc.Animation:createWithSpriteFrames(
-        --                         frameList, config.gap * Director:getAnimationInterval())
-        local animation = cc.Animation:createWithSpriteFrames(frameList, config.gap / 60)
+        local animation = cc.Animation:createWithSpriteFrames(frameList, config.gap * Director:getAnimationInterval())
         animation:setRestoreOriginalFrame(true)
         -- crate action
         local action = cc.Animate:create(animation)
@@ -172,34 +172,9 @@ function AnimationManager:addAnimation(sprite, animName, loop)
         sprite._animation = actSpeed
         return actSpeed, frameList[1]
     else
-        printError("Can't find anim: " .. animName)
+        print("Can't find anim: " .. animName)
     end
 end
-
--- function AnimationManager:createAnimByName(animName, loop)
---     loop = loop or false
---     local path = getPathListFromString(animName)
---     local frameList, tarPath = getFramesFromPath(path)
---     if frameList then
---         local config = getAnimConfigByPath(self, tarPath)
---         if not config then
---             config = {gap = 5, offset = {0, 0}}
---         end
---         -- set offset
---         local offset = config.offset
---         -- create animation
---         local animation = cc.Animation:createWithSpriteFrames(frameList, config.gap / 60)
---         animation:setRestoreOriginalFrame(true)
---         -- crate action
---         local action = cc.Animate:create(animation)
---         if loop then
---             action = cc.RepeatForever:create(action)
---         end
---         return cc.Speed:create(action, 0)
---     else
---         printError("Can't find anim: " .. animName)
---     end
--- end
 
 function AnimationManager:flipX(animation)
     local speed = animation:getSpeed()
@@ -249,6 +224,12 @@ function AnimationManager:runAnimLandedWeapon(weaponSpr)
     local seq = cc.Sequence:create(action, reAction)
     local repAct = cc.RepeatForever:create(seq)
     body:runAction(repAct)
+end
+
+function AnimationManager:addPlistToFrameCache(plistName)
+    if not frameCache:isSpriteFramesWithFileLoaded(plistName) then
+        frameCache:addSpriteFrames(plistName)
+    end
 end
 
 AM = AnimationManager

@@ -22,10 +22,10 @@ function DataManager:storeClass(class)
 		if not DataManager._classes[class.__cname] then
 			DataManager._classes[class.__cname] = class
 		else
-			printError("Store class failed. (value " .. name .. " is already exists)")
+			print("Store class failed. (value " .. name .. " is already exists)")
 		end
 	else
-		printError("class is a nil cocos class")
+		print("class is a nil cocos class")
 	end
 end
 
@@ -33,7 +33,7 @@ function DataManager:getClass(name)
 	if DataManager._classes[name] then
 		return DataManager._classes[name]
 	else
-		printError("Get Class failed. (value " .. name .. " is not exists)")
+		print("Get Class failed. (value " .. name .. " is not exists)")
 	end
 end
 
@@ -54,11 +54,11 @@ end
 function DataManager:aliasClass(orgName, newName)
 	local orgCls = DataManager._classes[newName]
 	if not orgCls then
-		printError("Alias class error. (" .. orgName .. " No such class)")
+		print("Alias class error. (" .. orgName .. " No such class)")
 		return
 	end
 	if self:getClass(newName) then
-		printError("Alias error. (value " .. newName .. " is already exist)")
+		print("Alias error. (value " .. newName .. " is already exist)")
 		return
 	end
 	self._classes[newName] = orgCls
@@ -70,7 +70,7 @@ function DataManager:storeValue(name, value)
 	if not DataManager._values[name] then
 		DataManager._values[name] = value
 	else
-		printError("Store value failed. (value " .. name .. " is already exists)")
+		print("Store value failed. (value " .. name .. " is already exists)")
 	end
 end
 
@@ -78,7 +78,7 @@ function DataManager:getValue(name)
 	if DataManager._values[name] then
 		return DataManager._values[name]
 	else
-		printError("Get value failed. (" .. name .. " No such value)")
+		print("Get value failed. (" .. name .. " No such value)")
 	end
 end
 
@@ -99,11 +99,11 @@ end
 function DataManager:aliasValue(orgName, newName)
 	local orgVal = DataManager._values[orgName]
 	if not orgVal then
-		printError("Alias value error. (" .. orgName .. " No such value)")
+		print("Alias value error. (" .. orgName .. " No such value)")
 		return
 	end
 	if DataManager._values[newName] then
-		printError("Alias error. (value " .. newName .. " is already exist)")
+		print("Alias error. (value " .. newName .. " is already exist)")
 		return
 	end
 	self._values[newName] = orgVal

@@ -2,8 +2,8 @@
   <PropertyGroup Name="PlayerWriter2" Type="Plist" ID="4a5f6240-402b-4434-a7e9-57f3b53048b9" Version="3.10.0.0" />
   <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="0" AllowRotation="False" AllowAnySize="False" AllowTrim="False" ctype="PlistInfoData">
     <ImageFiles>
-      <FilePathData Path="Atlases/Player/Writer2/Attack/9mm/000.png" />
-      <FilePathData Path="Atlases/Player/Writer2/Attack/9mm/001.png" />
+      <FilePathData Path="Atlases/Player/Writer2/Attack/Nmm/000.png" />
+      <FilePathData Path="Atlases/Player/Writer2/Attack/Nmm/001.png" />
       <FilePathData Path="Atlases/Player/Writer2/Attack/Barrel1/000.png" />
       <FilePathData Path="Atlases/Player/Writer2/Attack/Barrel1/001.png" />
       <FilePathData Path="Atlases/Player/Writer2/Attack/Barrel1/002.png" />
@@ -161,14 +161,14 @@
       <FilePathData Path="Atlases/Player/Writer2/Kill/Pipe/005.png" />
       <FilePathData Path="Atlases/Player/Writer2/Kill/Pipe/006.png" />
       <FilePathData Path="Atlases/Player/Writer2/Kill/Pipe/007.png" />
-      <FilePathData Path="Atlases/Player/Writer2/Walk/9mm/000.png" />
-      <FilePathData Path="Atlases/Player/Writer2/Walk/9mm/001.png" />
-      <FilePathData Path="Atlases/Player/Writer2/Walk/9mm/002.png" />
-      <FilePathData Path="Atlases/Player/Writer2/Walk/9mm/003.png" />
-      <FilePathData Path="Atlases/Player/Writer2/Walk/9mm/004.png" />
-      <FilePathData Path="Atlases/Player/Writer2/Walk/9mm/005.png" />
-      <FilePathData Path="Atlases/Player/Writer2/Walk/9mm/006.png" />
-      <FilePathData Path="Atlases/Player/Writer2/Walk/9mm/007.png" />
+      <FilePathData Path="Atlases/Player/Writer2/Walk/Nmm/000.png" />
+      <FilePathData Path="Atlases/Player/Writer2/Walk/Nmm/001.png" />
+      <FilePathData Path="Atlases/Player/Writer2/Walk/Nmm/002.png" />
+      <FilePathData Path="Atlases/Player/Writer2/Walk/Nmm/003.png" />
+      <FilePathData Path="Atlases/Player/Writer2/Walk/Nmm/004.png" />
+      <FilePathData Path="Atlases/Player/Writer2/Walk/Nmm/005.png" />
+      <FilePathData Path="Atlases/Player/Writer2/Walk/Nmm/006.png" />
+      <FilePathData Path="Atlases/Player/Writer2/Walk/Nmm/007.png" />
       <FilePathData Path="Atlases/Player/Writer2/Walk/Barrel/000.png" />
       <FilePathData Path="Atlases/Player/Writer2/Walk/Barrel/001.png" />
       <FilePathData Path="Atlases/Player/Writer2/Walk/Barrel/002.png" />

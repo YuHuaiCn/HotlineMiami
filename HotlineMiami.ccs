@@ -6675,7 +6675,7 @@
                 <Image Name="001.png" />
               </Folder>
               <Folder Name="Attack">
-                <Folder Name="9mm">
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                 </Folder>
@@ -7050,7 +7050,7 @@
                 <Image Name="sprBearWalkPizza.png" />
               </Folder>
               <Folder Name="Walk">
-                <Folder Name="9mm">
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                   <Image Name="002.png" />
@@ -8164,7 +8164,7 @@
             </Folder>
             <Folder Name="Cop">
               <Folder Name="Attack">
-                <Folder Name="9mm">
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                 </Folder>
@@ -8854,7 +8854,7 @@
                 </Folder>
               </Folder>
               <Folder Name="Walk">
-                <Folder Name="9mm">
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                   <Image Name="002.png" />
@@ -9029,7 +9029,7 @@
             </Folder>
             <Folder Name="Henchman">
               <Folder Name="Attack">
-                <Folder Name="9mm">
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                 </Folder>
@@ -9435,7 +9435,7 @@
                 </Folder>
               </Folder>
               <Folder Name="Walk">
-                <Folder Name="9mm">
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                   <Image Name="002.png" />
@@ -9998,7 +9998,7 @@
             </Folder>
             <Folder Name="PigButcher">
               <Folder Name="Attack">
-                <Folder Name="9mm">
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                 </Folder>
@@ -10472,7 +10472,7 @@
                 </Folder>
               </Folder>
               <Folder Name="Walk">
-                <Folder Name="9mm">
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                   <Image Name="002.png" />
@@ -13052,10 +13052,6 @@
             </Folder>
             <Folder Name="Writer">
               <Folder Name="Attack">
-                <Folder Name="9mm">
-                  <Image Name="000.png" />
-                  <Image Name="001.png" />
-                </Folder>
                 <Folder Name="Barrel1">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
@@ -13121,6 +13117,10 @@
                   <Image Name="001.png" />
                 </Folder>
                 <Folder Name="Magnum">
+                  <Image Name="000.png" />
+                  <Image Name="001.png" />
+                </Folder>
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                 </Folder>
@@ -13757,16 +13757,6 @@
                 </Folder>
               </Folder>
               <Folder Name="Walk">
-                <Folder Name="9mm">
-                  <Image Name="000.png" />
-                  <Image Name="001.png" />
-                  <Image Name="002.png" />
-                  <Image Name="003.png" />
-                  <Image Name="004.png" />
-                  <Image Name="005.png" />
-                  <Image Name="006.png" />
-                  <Image Name="007.png" />
-                </Folder>
                 <Folder Name="Barrel">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
@@ -13838,6 +13828,16 @@
                   <Image Name="007.png" />
                 </Folder>
                 <Folder Name="Magnum">
+                  <Image Name="000.png" />
+                  <Image Name="001.png" />
+                  <Image Name="002.png" />
+                  <Image Name="003.png" />
+                  <Image Name="004.png" />
+                  <Image Name="005.png" />
+                  <Image Name="006.png" />
+                  <Image Name="007.png" />
+                </Folder>
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                   <Image Name="002.png" />
@@ -13927,7 +13927,7 @@
             </Folder>
             <Folder Name="Writer2">
               <Folder Name="Attack">
-                <Folder Name="9mm">
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                 </Folder>
@@ -14142,7 +14142,7 @@
                 </Folder>
               </Folder>
               <Folder Name="Walk">
-                <Folder Name="9mm">
+                <Folder Name="Nmm">
                   <Image Name="000.png" />
                   <Image Name="001.png" />
                   <Image Name="002.png" />

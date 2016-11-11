@@ -8,16 +8,9 @@ Player._weapon = nil
 Player._animation = nil
 Player._spBody = nil
 Player._spLeg = nil
--- 回调函数
-Player.startAttackCallback = nil
-Player.updateAttackCallback = nil
-Player.endAttackCallback = nil
-Player._animName = ""  -- 当前_animation中动画的名称
 Player._state = 0
 
--- player state
-local PLAYER_STATE_ATTACKING = 1
-local PALYER_STATE_NULL = 0
+-- Player.Constant = {}
 
 local PLAYER_CONTACT_MASK   = 0x1
 local PLAYER_CATEGORY_MASK  = 0x1
@@ -46,16 +39,15 @@ function Player:ctor(args)
     body:setCollisionBitmask(PLAYER_COLLISION_MASK)
     body:setLinearDamping(26.8)
     body:setAngularDamping(10)
-    body:setMoment(50000)
+    body:setMoment(PHYSICS_INFINITY)
     self:setPhysicsBody(body)
 end
 
 function Player:startFollow(touchPoint)
-	local lcPosition = self:getParent():convertToNodeSpace(touchPoint)
+	local lcPosition = DM:getValue("LandLayer"):convertToNodeSpace(touchPoint)
 	-- creat follow point: mouse
     local mouse = cc.Sprite:create("Atlases/Weapon/Bat.png")
     local mouseBody = cc.PhysicsBody:create(PHYSICS_INFINITY, PHYSICS_INFINITY)
-    local spBody = self:getChildByName("Body")
     mouseBody:setDynamic(false)
     mouse:setPhysicsBody(mouseBody)
     mouse:setPosition(lcPosition)
@@ -66,10 +58,6 @@ function Player:startFollow(touchPoint)
     local joint = cc.PhysicsJointPin:construct(selfBody, mouseBody, cc.p(0, 0), cc.p(0, 0))
     joint:setMaxForce(self._runSpeed * selfBody:getMass())
     DM:getValue("PhysicsWorld"):addJoint(joint)
-    -- run leg animation
-    AM:runAnimation(self:getChildByName("Leg"))
-    -- run body anim
-    AM:runAnimation(spBody)
     -- init leg rotation
     self._preFollowedPoint = cc.p(-1000, -1000)
     self:updateLegRotation(lcPosition)
@@ -85,34 +73,10 @@ function Player:endFollow()
 	self._mouse:removeFromParent()
 	self._mouse = nil
     self._preFollowedPoint = cc.p(-1000, -1000)
-    -- pause leg animation
-    AM:pauseAnimation(self:getChildByName("Leg"))
-    -- pause body anim
-    AM:pauseAnimation(self:getChildByName("Body"))
-end
-
-function Player:startAttack(touchPoint)
-    local lcPosition = self:getParent():convertToNodeSpace(touchPoint)
-    -- local spBody = self:getChildByName("Body")
-    local curRotation = self:getRotation()
-    local angle = self:calRotationDegree(lcPosition)
-    -- calculate turn degree
-    local trueTurn = math.abs(angle - curRotation)
-    trueTurn = trueTurn - 360 * (math.floor(trueTurn / 360))
-    if trueTurn > 180 then
-        trueTurn = 360 - trueTurn
-    end
-    local rotTime = trueTurn / (self._turnSpeed * 180 / math.pi)
-    local action = cc.RotateTo:create(rotTime, angle)
-    local acf = cc.CallFunc:create(self.startAttackCallback)
-    local seq = cc.Sequence:create(action, acf)
-    self._state = PLAYER_STATE_ATTACKING
-    self:runAction(seq)
 end
 
 function Player:turnToPoint(touchPoint)
     local lcPosition = self:getParent():convertToNodeSpace(touchPoint)
-    -- local spBody = self:getChildByName("Body")
     local curRotation = self:getRotation()
     local angle = self:calRotationDegree(lcPosition)
     -- calculate turn degree
@@ -123,14 +87,14 @@ function Player:turnToPoint(touchPoint)
     end
     local rotTime = trueTurn / (self._turnSpeed * 180 / math.pi)
     local action = cc.RotateTo:create(rotTime, angle)
-    local acf = cc.CallFunc:create(self.turnEndCallback)
-    local seq = cc.Sequence:create(action, acf)
-    self._state = PLAYER_STATE_ATTACKING
-    self:runAction(seq)
+    self:runAction(action)
+end
+
+function Player:startAttack(touchPoint)
+
 end
 
 function Player:updateAttack(touchPoint)
-    -- print("Player:updateAttack(touch)")
     local lcPosition = self:getParent():convertToNodeSpace(touchPoint)
     self:updateBodyRotation(lcPosition)
 end
@@ -140,7 +104,6 @@ function Player:endAttack()
 end
 
 function Player:updateBodyRotation(tarPoint)
-    -- print("Player:updateBodyRotation()")
     if not tarPoint then
         printError("tarPoint is a nil value")
         return
@@ -158,11 +121,11 @@ function Player:updateLegRotation(tarPoint)
        math.abs(tarPoint.y - self._preFollowedPoint.y) < 10 then
         return
     end
-    local angle = self:calRotationDegree(tarPoint)  -- tarPoint相对于self的角度
+    local angle = self:calRotationDegree(tarPoint)  -- tarPoint�����self�ĽǶ�
     local selfRot = self:getRotation()
     local spLeg = self:getChildByName("Leg")
     if spLeg then
-        spLeg:setRotation(angle - selfRot)  -- leg相对于self的角度
+        spLeg:setRotation(angle - selfRot)  -- leg�����self�ĽǶ�
     end
 end
 

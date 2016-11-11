@@ -1,10 +1,11 @@
 
-local MeleeWeapon = class("MeleeWeapon", Weapon.Weapon)
+local MeleeWeapon = class("MeleeWeapon", Weapon.BaseWeapon)
 
 MeleeWeapon._type = "Melee"
 
 function MeleeWeapon:ctor(...)
-	-- body
+	MeleeWeapon.super.ctor(self, ...)
+	return self
 end
 
 function MeleeWeapon:dtor(...)

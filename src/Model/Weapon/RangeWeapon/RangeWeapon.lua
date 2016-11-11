@@ -1,10 +1,10 @@
 
 local RangeWeapon = class("RangeWeapon", Weapon.BaseWeapon)
 
-RangeWeapon._type = "range"
+RangeWeapon._type = "Range"
 
 function RangeWeapon:ctor(...)
-	Weapon.RangeWeapon.super.ctor(self, ...)
+	RangeWeapon.super.ctor(self, ...)
 	return self
 end
 

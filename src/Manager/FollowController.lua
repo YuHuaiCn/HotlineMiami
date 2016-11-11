@@ -14,6 +14,7 @@ local POINT_TYPE_NULL    = 0
 local POINT_TYPE_ATTACK  = 1
 local POINT_TYPE_FOLLOW  = 2
 local POINT_TYPE_DISCARD = 3  -- 一开始为FollowPoint后弃用
+local POINT_TYPE_PICKUP  = 4
 
 function FollowController:init(layer)
 	local oneByOneListener = cc.EventListenerTouchOneByOne:create()
@@ -63,6 +64,7 @@ function FollowController:touchBegin(touch, event)
     touch._entryTime = os.clock()
     touch._type = POINT_TYPE_NULL
     self._oneByOnePoints[#self._oneByOnePoints + 1] = touch
+    local landLayer = DM:getValue("LandLayer")
     local hero = DM:getValue("CurrentHero")
     local touchPoint = touch:getLocation()
     -- in follow panel
@@ -94,9 +96,28 @@ function FollowController:touchBegin(touch, event)
         end
         synMoveEntry = Scheduler:scheduleScriptFunc(synMovePoint, 0.2, false)
     else
-    -- not in follow panel
-        touch._type = POINT_TYPE_ATTACK
-        hero:startAttack(touchPoint)
+        -- not in follow panel
+        local lcPoint = landLayer:convertToNodeSpace(touchPoint)
+        local wpnNearby = {}
+        -- 半径75之外的触点不认为是PickUp点
+        if cc.pDistanceSQ(lcPoint, cc.p(hero:getPosition())) < 150 * 150 then
+            local wpnList = DM:getValue("LandedWeapons")
+            wpnList = wpnList or {}
+            for _, spWpn in ipairs(wpnList) do
+                local dst = cc.pDistanceSQ(lcPoint, cc.p(spWpn:getPosition()))
+                if dst <= 225 then
+                    wpnNearby[#wpnNearby + 1] = spWpn
+                end
+            end
+        end
+        if #wpnNearby >= 1 then
+            touch._type = POINT_TYPE_PICKUP
+            hero:pickupWeapon(touchPoint)
+        else
+            if hero:startAttack(touchPoint) then 
+                touch._type = POINT_TYPE_ATTACK
+            end
+        end
     end
     return true
 end
