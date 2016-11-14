@@ -68,34 +68,45 @@ end
 function BaseWeapon:pickedUp()
 	self:removeChildByName("Background")
 	self:removeChildByName("Body")
-	local pyBody = self:getPhysicsBody()
-	if pyBody then
-		pyBody:removeFromWorld()
+	local body = self:getPhysicsBody()
+	if body then
+		print("1")
+		body:removeFromWorld()
+		self:removeComponent(body)
+		print("2")
 	end
+		-- self:removeAllComponents()
 end
 
-function BaseWeapon:throw(pos, direction)
-	if pos.x == nil or pos.y == nil or
-		direction.x == nil or direction.y == nil then
+-- r为x轴顺时针到面朝方向的夹角(角度)
+function BaseWeapon:throw(pos, d)
+	if pos.x == nil or pos.y == nil or d == nil then
 		print("BaseWeapon:throw: invalid argument")
 		return
 	end
-	velocity = self:getThrowVelocity(direction)
+	local velocity = self:getThrowVelocity(d)
 	self:addPhysicsBody()
 	self:setPosition(pos)
-	self:getPhysicsBody():setVelocity(velocity)
+	local pyBody = self:getPhysicsBody()
+	pyBody:setVelocity(velocity)
 	local entry
-	-- entry = Scheduler:scheduleScriptFunc()
+	entry = Scheduler:scheduleScriptFunc(function()
+				local v = pyBody:getVelocity()
+				if v.x < 0.1 and v.y < 0.1 then
+					if entry then
+						Scheduler:unscheduleScriptEntry(entry)
+					end
+					self:runAnimLandedWeapon()
+				end
+			end, 0, false)
 end
 
-function BaseWeapon:getThrowVelocity(direction)
-	if direction.x == nil or direction.y == nil then
+function BaseWeapon:getThrowVelocity(d)
+	if d == nil then
 		print("BaseWeapon:getThrowVelocity: invalid argument")
 		return
 	end
-	local v = cc.pGetLength(direction)
-	local k = 10 / v
-	return cc.p(k*direction.x, k*direction.y)
+	return cc.p(10 * math.cos(math.rad(d)), -10 * math.sin(math.rad(d)))
 end
 
 function BaseWeapon:addToLandedWeapons()

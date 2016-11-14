@@ -140,3 +140,7 @@ function Player:calRotationDegree(tarPoint)
     angle = angle * 180 / math.pi
     return -angle   -- clockwise
 end
+
+function Player:facingDirection()
+    local rot = self:getRotation()
+end

@@ -93,9 +93,11 @@ function Writer:initStateMachine()
 							local ndWeapon = event.args[1]
 							-- 丢弃原先的武器
 							if self._weapon and self._weapon.__cname ~= "Punch" then
-
+								self._weapon:throw(cc.p(self:getPosition()), self:getRotation())
 							end
 							if ndWeapon then
+								-- 捡起现在的武器
+				    			ndWeapon:pickedUp()
 								if event.from == "walk" then
 									self._weapon = ndWeapon
 									self:endFollow()
@@ -285,12 +287,10 @@ function Writer:pickupWeapon(touchPoint)
     							Scheduler:unscheduleScriptEntry(entry)
     						end
     						self.StateMachine:doEvent("Pickup", wpnNearby.tar)
-				    		wpnNearby.tar:pickedUp()
     					end
     				end, 0, false)
     	else
     		self.StateMachine:doEvent("Pickup", wpnNearby.tar)
-    		wpnNearby.tar:pickedUp()
     	end
     	table.remove(wpnList, wpnNearby.index)
     	return true
